@@ -3,9 +3,9 @@
  *
  * Code generation for model "check_serial_new_arduino_time".
  *
- * Model version              : 2.3
+ * Model version              : 2.7
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Wed Mar 24 19:52:13 2021
+ * C source code generated on : Wed Mar 24 21:40:21 2021
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
