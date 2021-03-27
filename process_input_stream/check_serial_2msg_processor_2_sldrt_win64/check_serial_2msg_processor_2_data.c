@@ -3,9 +3,9 @@
  *
  * Code generation for model "check_serial_2msg_processor_2".
  *
- * Model version              : 2.173
+ * Model version              : 2.222
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Fri Mar 26 23:53:04 2021
+ * C source code generated on : Sat Mar 27 01:28:33 2021
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -20,7 +20,7 @@
 /* Block parameters (default storage) */
 P_check_serial_2msg_processor_2_T check_serial_2msg_processor_2_P = {
   /* Mask Parameter: PacketInput2_MaxMissedTicks
-   * Referenced by: '<S5>/Packet Input2'
+   * Referenced by: '<S7>/Packet Input2'
    */
   0.0,
 
@@ -35,7 +35,7 @@ P_check_serial_2msg_processor_2_T check_serial_2msg_processor_2_P = {
   0.0,
 
   /* Mask Parameter: PacketInput2_YieldWhenWaiting
-   * Referenced by: '<S5>/Packet Input2'
+   * Referenced by: '<S7>/Packet Input2'
    */
   0.0,
 
@@ -50,7 +50,7 @@ P_check_serial_2msg_processor_2_T check_serial_2msg_processor_2_P = {
   0.0,
 
   /* Mask Parameter: PacketInput2_PacketID
-   * Referenced by: '<S5>/Packet Input2'
+   * Referenced by: '<S7>/Packet Input2'
    */
   1,
 
@@ -64,8 +64,18 @@ P_check_serial_2msg_processor_2_T check_serial_2msg_processor_2_P = {
    */
   1,
 
+  /* Expression: hex2dec('0x00')
+   * Referenced by: '<S5>/Constant'
+   */
+  0.0,
+
+  /* Expression: hex2dec('0x01')
+   * Referenced by: '<S6>/Constant'
+   */
+  1.0,
+
   /* Expression: 1
-   * Referenced by: '<S2>/Constant'
+   * Referenced by: '<S3>/Constant'
    */
   1.0,
 
@@ -144,8 +154,33 @@ P_check_serial_2msg_processor_2_T check_serial_2msg_processor_2_P = {
    */
   0.0,
 
+  /* Expression: 0
+   * Referenced by: '<S1>/Unit Delay2'
+   */
+  0.0,
+
+  /* Computed Parameter: Accumulator_gainval
+   * Referenced by: '<S1>/Accumulator'
+   */
+  1.0,
+
+  /* Expression: 1
+   * Referenced by: '<S1>/Accumulator'
+   */
+  1.0,
+
+  /* Expression: -1
+   * Referenced by: '<S1>/Bias'
+   */
+  -1.0,
+
+  /* Expression: 1
+   * Referenced by: '<S1>/Constant18'
+   */
+  1.0,
+
   /* Expression: false
-   * Referenced by: '<S4>/Unit Delay5'
+   * Referenced by: '<S8>/Unit Delay5'
    */
   0,
 
@@ -155,82 +190,83 @@ P_check_serial_2msg_processor_2_T check_serial_2msg_processor_2_P = {
   1,
 
   /* Expression: true
-   * Referenced by: '<S1>/Constant18'
+   * Referenced by: '<S2>/Constant18'
    */
   1,
 
-  /* Computed Parameter: Out1_Y0
-   * Referenced by: '<S8>/Out1'
-   */
-  0U,
-
   /* Computed Parameter: iterator_Y0
-   * Referenced by: '<S2>/iterator'
+   * Referenced by: '<S3>/iterator'
    */
   0U,
 
   /* Computed Parameter: y_Y0
-   * Referenced by: '<S2>/y'
-   */
-  0U,
-
-  /* Computed Parameter: UnitDelay_InitialCondition
-   * Referenced by: '<S2>/Unit Delay'
-   */
-  0U,
-
-  /* Computed Parameter: UnitDelay1_InitialCondition
-   * Referenced by: '<S2>/Unit Delay1'
-   */
-  0U,
-
-  /* Computed Parameter: UnitDelay2_InitialCondition
-   * Referenced by: '<S2>/Unit Delay2'
-   */
-  0U,
-
-  /* Computed Parameter: UnitDelay3_InitialCondition
-   * Referenced by: '<S2>/Unit Delay3'
-   */
-  0U,
-
-  /* Computed Parameter: UnitDelay4_InitialCondition
-   * Referenced by: '<S2>/Unit Delay4'
+   * Referenced by: '<S3>/y'
    */
   0U,
 
   /* Expression: uint8(1)
-   * Referenced by: '<S4>/Unit Delay'
+   * Referenced by: '<S8>/Unit Delay'
    */
   1U,
 
-  /* Computed Parameter: UnitDelay1_InitialCondition_j
-   * Referenced by: '<S4>/Unit Delay1'
+  /* Computed Parameter: UnitDelay1_InitialCondition
+   * Referenced by: '<S8>/Unit Delay1'
    */
   0U,
 
-  /* Computed Parameter: UnitDelay2_InitialCondition_j
-   * Referenced by: '<S4>/Unit Delay2'
+  /* Computed Parameter: UnitDelay2_InitialCondition_m
+   * Referenced by: '<S8>/Unit Delay2'
    */
   1U,
 
-  /* Computed Parameter: UnitDelay3_InitialCondition_b
-   * Referenced by: '<S4>/Unit Delay3'
+  /* Computed Parameter: UnitDelay3_InitialCondition
+   * Referenced by: '<S8>/Unit Delay3'
    */
   0U,
 
-  /* Computed Parameter: UnitDelay4_InitialCondition_n
-   * Referenced by: '<S4>/Unit Delay4'
+  /* Computed Parameter: UnitDelay4_InitialCondition
+   * Referenced by: '<S8>/Unit Delay4'
    */
   0U,
 
   /* Computed Parameter: UnitDelay_InitialCondition_h
-   * Referenced by: '<S6>/Unit Delay'
+   * Referenced by: '<S9>/Unit Delay'
    */
   0U,
 
-  /* Computed Parameter: Accumulator_IC
-   * Referenced by: '<S6>/Accumulator'
+  /* Computed Parameter: Accumulator_IC_c
+   * Referenced by: '<S9>/Accumulator'
    */
-  0U
+  0U,
+
+  /* Start of '<S6>/Triggered Subsystem' */
+  {
+    /* Computed Parameter: tx_Y0
+     * Referenced by: '<S12>/tx'
+     */
+    0U
+  }
+  ,
+
+  /* End of '<S6>/Triggered Subsystem' */
+
+  /* Start of '<S5>/Triggered Subsystem' */
+  {
+    /* Computed Parameter: tx_Y0
+     * Referenced by: '<S11>/tx'
+     */
+    0U
+  }
+  ,
+
+  /* End of '<S5>/Triggered Subsystem' */
+
+  /* Start of '<S4>/Triggered Subsystem' */
+  {
+    /* Computed Parameter: tx_Y0
+     * Referenced by: '<S10>/tx'
+     */
+    0U
+  }
+  /* End of '<S4>/Triggered Subsystem' */
 };

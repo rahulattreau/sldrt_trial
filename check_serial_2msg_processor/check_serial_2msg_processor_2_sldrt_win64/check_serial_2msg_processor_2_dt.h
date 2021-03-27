@@ -3,9 +3,9 @@
  *
  * Code generation for model "check_serial_2msg_processor_2".
  *
- * Model version              : 2.57
+ * Model version              : 2.289
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Fri Mar 26 17:25:05 2021
+ * C source code generated on : Sat Mar 27 02:20:27 2021
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -54,28 +54,52 @@ static const char_T * rtDataTypeNames[] = {
 
 /* data type transitions for block I/O structure */
 static DataTypeTransition rtBTransitions[] = {
-  { (char_T *)(&check_serial_2msg_processor_2_B.Timestamp), 0, 0, 2 },
+  { (char_T *)(&check_serial_2msg_processor_2_B.ExecutionTime), 0, 0, 3 },
 
-  { (char_T *)(&check_serial_2msg_processor_2_B.DataTypeConversion), 3, 0, 36 },
+  { (char_T *)(&check_serial_2msg_processor_2_B.missed_ticks), 6, 0, 1 },
 
-  { (char_T *)(&check_serial_2msg_processor_2_B.Equal), 8, 0, 1 }
+  { (char_T *)(&check_serial_2msg_processor_2_B.DataTypeConversion), 3, 0, 166 },
+
+  { (char_T *)(&check_serial_2msg_processor_2_B.available), 8, 0, 3 },
+
+  { (char_T *)(&check_serial_2msg_processor_2_B.TriggeredSubsystem_h.rx[0]), 3,
+    0, 4 },
+
+  { (char_T *)(&check_serial_2msg_processor_2_B.TriggeredSubsystem_i.rx[0]), 3,
+    0, 4 },
+
+  { (char_T *)(&check_serial_2msg_processor_2_B.TriggeredSubsystem.rx[0]), 3, 0,
+    4 }
   ,
 
-  { (char_T *)(&check_serial_2msg_processor_2_DW.Accumulator1_DSTATE), 0, 0, 1 },
+  { (char_T *)(&check_serial_2msg_processor_2_DW.UnitDelay2_DSTATE), 0, 0, 2 },
 
   { (char_T *)(&check_serial_2msg_processor_2_DW.PacketOutput_PWORK[0]), 11, 0,
-    9 },
+    30 },
 
-  { (char_T *)(&check_serial_2msg_processor_2_DW.Accumulator_DSTATE), 3, 0, 1 },
+  { (char_T *)(&check_serial_2msg_processor_2_DW.UnitDelay_DSTATE), 3, 0, 153 },
+
+  { (char_T *)(&check_serial_2msg_processor_2_DW.UnitDelay5_DSTATE), 8, 0, 1 },
+
+  { (char_T *)(&check_serial_2msg_processor_2_DW.message_rx_looper_SubsysRanBC),
+    2, 0, 1 },
 
   { (char_T *)
-    (&check_serial_2msg_processor_2_DW.ForIteratorSubsystem_SubsysRanBC), 2, 0,
-    1 }
+    (&check_serial_2msg_processor_2_DW.TriggeredSubsystem_h.TriggeredSubsystem_SubsysRanBC),
+    2, 0, 1 },
+
+  { (char_T *)
+    (&check_serial_2msg_processor_2_DW.TriggeredSubsystem_i.TriggeredSubsystem_SubsysRanBC),
+    2, 0, 1 },
+
+  { (char_T *)
+    (&check_serial_2msg_processor_2_DW.TriggeredSubsystem.TriggeredSubsystem_SubsysRanBC),
+    2, 0, 1 }
 };
 
 /* data type transition table for block I/O structure */
 static DataTypeTransitionTable rtBTransTable = {
-  7U,
+  15U,
   rtBTransitions
 };
 
@@ -87,17 +111,26 @@ static DataTypeTransition rtPTransitions[] = {
   { (char_T *)(&check_serial_2msg_processor_2_P.PacketInput2_PacketID), 6, 0, 3
   },
 
-  { (char_T *)(&check_serial_2msg_processor_2_P.Accumulator1_gainval), 0, 0, 19
-  },
+  { (char_T *)(&check_serial_2msg_processor_2_P.Constant_Value), 0, 0, 29 },
 
-  { (char_T *)(&check_serial_2msg_processor_2_P.Constant18_Value), 8, 0, 1 },
+  { (char_T *)(&check_serial_2msg_processor_2_P.UnitDelay5_InitialCondition), 8,
+    0, 3 },
 
-  { (char_T *)(&check_serial_2msg_processor_2_P.Out1_Y0), 3, 0, 4 }
+  { (char_T *)(&check_serial_2msg_processor_2_P.iterator_Y0), 3, 0, 11 },
+
+  { (char_T *)(&check_serial_2msg_processor_2_P.TriggeredSubsystem_h.tx_Y0), 3,
+    0, 1 },
+
+  { (char_T *)(&check_serial_2msg_processor_2_P.TriggeredSubsystem_i.tx_Y0), 3,
+    0, 1 },
+
+  { (char_T *)(&check_serial_2msg_processor_2_P.TriggeredSubsystem.tx_Y0), 3, 0,
+    1 }
 };
 
 /* data type transition table for Parameters structure */
 static DataTypeTransitionTable rtPTransTable = {
-  5U,
+  8U,
   rtPTransitions
 };
 

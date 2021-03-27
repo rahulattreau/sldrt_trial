@@ -3,9 +3,9 @@
  *
  * Code generation for model "check_serial_2msg_processor_2".
  *
- * Model version              : 2.57
+ * Model version              : 2.289
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Fri Mar 26 17:25:05 2021
+ * C source code generated on : Sat Mar 27 02:20:27 2021
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -21,6 +21,10 @@
 #include "zero_crossing_types.h"
 
 /* Model Code Variants */
+
+/* Parameters for system: '<S5>/Triggered Subsystem' */
+typedef struct P_TriggeredSubsystem_check_serial_2msg_processor_2_T_
+  P_TriggeredSubsystem_check_serial_2msg_processor_2_T;
 
 /* Parameters (default storage) */
 typedef struct P_check_serial_2msg_processor_2_T_
