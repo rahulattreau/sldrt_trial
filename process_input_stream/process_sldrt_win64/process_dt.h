@@ -3,9 +3,9 @@
  *
  * Code generation for model "process".
  *
- * Model version              : 2.300
+ * Model version              : 2.344
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Mon Mar 29 17:11:01 2021
+ * C source code generated on : Tue Mar 30 20:37:10 2021
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -58,9 +58,9 @@ static DataTypeTransition rtBTransitions[] = {
 
   { (char_T *)(&process_B.missed_ticks), 6, 0, 1 },
 
-  { (char_T *)(&process_B.DataTypeConversion), 3, 0, 165 },
+  { (char_T *)(&process_B.DataTypeConversion), 3, 0, 166 },
 
-  { (char_T *)(&process_B.available), 8, 0, 3 },
+  { (char_T *)(&process_B.available), 8, 0, 4 },
 
   { (char_T *)(&process_B.TriggeredSubsystem_h.rx[0]), 3, 0, 4 },
 
@@ -71,13 +71,13 @@ static DataTypeTransition rtBTransitions[] = {
 
   { (char_T *)(&process_DW.UnitDelay2_DSTATE), 0, 0, 2 },
 
-  { (char_T *)(&process_DW.PacketOutput_PWORK[0]), 11, 0, 30 },
+  { (char_T *)(&process_DW.Scope25_PWORK.LoggedData), 11, 0, 36 },
 
   { (char_T *)(&process_DW.UnitDelay_DSTATE), 3, 0, 153 },
 
   { (char_T *)(&process_DW.UnitDelay5_DSTATE), 8, 0, 1 },
 
-  { (char_T *)(&process_DW.message_rx_looper_SubsysRanBC), 2, 0, 1 },
+  { (char_T *)(&process_DW.message_rx_looper_SubsysRanBC), 2, 0, 2 },
 
   { (char_T *)(&process_DW.TriggeredSubsystem_h.TriggeredSubsystem_SubsysRanBC),
     2, 0, 1 },
@@ -97,6 +97,8 @@ static DataTypeTransitionTable rtBTransTable = {
 
 /* data type transitions for Parameters structure */
 static DataTypeTransition rtPTransitions[] = {
+  { (char_T *)(&process_P.kGrdCmdSize), 3, 0, 6 },
+
   { (char_T *)(&process_P.PacketInput2_MaxMissedTicks), 0, 0, 6 },
 
   { (char_T *)(&process_P.PacketInput2_PacketID), 6, 0, 3 },
@@ -105,7 +107,7 @@ static DataTypeTransition rtPTransitions[] = {
 
   { (char_T *)(&process_P.UnitDelay5_InitialCondition), 8, 0, 3 },
 
-  { (char_T *)(&process_P.iterator_Y0), 3, 0, 10 },
+  { (char_T *)(&process_P.sum_eight_bit_Y0), 3, 0, 11 },
 
   { (char_T *)(&process_P.TriggeredSubsystem_h.tx_Y0), 3, 0, 1 },
 
@@ -116,7 +118,7 @@ static DataTypeTransition rtPTransitions[] = {
 
 /* data type transition table for Parameters structure */
 static DataTypeTransitionTable rtPTransTable = {
-  8U,
+  9U,
   rtPTransitions
 };
 

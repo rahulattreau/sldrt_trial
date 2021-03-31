@@ -3,9 +3,9 @@
  *
  * Code generation for model "process".
  *
- * Model version              : 2.300
+ * Model version              : 2.344
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Mon Mar 29 17:11:01 2021
+ * C source code generated on : Tue Mar 30 20:37:10 2021
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
