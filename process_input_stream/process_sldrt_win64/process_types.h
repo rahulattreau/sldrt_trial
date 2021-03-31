@@ -3,9 +3,9 @@
  *
  * Code generation for model "process".
  *
- * Model version              : 2.344
+ * Model version              : 2.406
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Tue Mar 30 20:37:10 2021
+ * C source code generated on : Tue Mar 30 21:41:59 2021
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -22,7 +22,7 @@
 
 /* Model Code Variants */
 
-/* Parameters for system: '<S5>/Triggered Subsystem' */
+/* Parameters for system: '<S6>/Triggered Subsystem' */
 typedef struct P_TriggeredSubsystem_process_T_ P_TriggeredSubsystem_process_T;
 
 /* Parameters (default storage) */

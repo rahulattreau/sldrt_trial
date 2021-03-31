@@ -3,9 +3,9 @@
  *
  * Code generation for model "process".
  *
- * Model version              : 2.344
+ * Model version              : 2.406
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Tue Mar 30 20:37:10 2021
+ * C source code generated on : Tue Mar 30 21:41:59 2021
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -31,7 +31,8 @@ static uint_T rtDataTypeSizes[] = {
   sizeof(int_T),
   sizeof(void*),
   sizeof(action_T),
-  2*sizeof(uint32_T)
+  2*sizeof(uint32_T),
+  sizeof(uint8_T)
 };
 
 /* data type name table */
@@ -49,7 +50,8 @@ static const char_T * rtDataTypeNames[] = {
   "int_T",
   "pointer_T",
   "action_T",
-  "timer_uint32_pair_T"
+  "timer_uint32_pair_T",
+  "uint8_T"
 };
 
 /* data type transitions for block I/O structure */
@@ -58,9 +60,11 @@ static DataTypeTransition rtBTransitions[] = {
 
   { (char_T *)(&process_B.missed_ticks), 6, 0, 1 },
 
-  { (char_T *)(&process_B.DataTypeConversion), 3, 0, 166 },
+  { (char_T *)(&process_B.Accumulator_c), 5, 0, 2 },
 
-  { (char_T *)(&process_B.available), 8, 0, 4 },
+  { (char_T *)(&process_B.DataTypeConversion), 3, 0, 167 },
+
+  { (char_T *)(&process_B.available), 8, 0, 3 },
 
   { (char_T *)(&process_B.TriggeredSubsystem_h.rx[0]), 3, 0, 4 },
 
@@ -71,13 +75,15 @@ static DataTypeTransition rtBTransitions[] = {
 
   { (char_T *)(&process_DW.UnitDelay2_DSTATE), 0, 0, 2 },
 
-  { (char_T *)(&process_DW.Scope25_PWORK.LoggedData), 11, 0, 36 },
+  { (char_T *)(&process_DW.Scope26_PWORK.LoggedData), 11, 0, 34 },
 
-  { (char_T *)(&process_DW.UnitDelay_DSTATE), 3, 0, 153 },
+  { (char_T *)(&process_DW.Accumulator_DSTATE_j), 5, 0, 2 },
+
+  { (char_T *)(&process_DW.UnitDelay_DSTATE), 3, 0, 155 },
 
   { (char_T *)(&process_DW.UnitDelay5_DSTATE), 8, 0, 1 },
 
-  { (char_T *)(&process_DW.message_rx_looper_SubsysRanBC), 2, 0, 2 },
+  { (char_T *)(&process_DW.message_rx_looper_SubsysRanBC), 2, 0, 3 },
 
   { (char_T *)(&process_DW.TriggeredSubsystem_h.TriggeredSubsystem_SubsysRanBC),
     2, 0, 1 },
@@ -91,7 +97,7 @@ static DataTypeTransition rtBTransitions[] = {
 
 /* data type transition table for block I/O structure */
 static DataTypeTransitionTable rtBTransTable = {
-  15U,
+  17U,
   rtBTransitions
 };
 
@@ -105,9 +111,11 @@ static DataTypeTransition rtPTransitions[] = {
 
   { (char_T *)(&process_P.Constant_Value), 0, 0, 23 },
 
+  { (char_T *)(&process_P.Accumulator_IC_g), 5, 0, 2 },
+
   { (char_T *)(&process_P.UnitDelay5_InitialCondition), 8, 0, 3 },
 
-  { (char_T *)(&process_P.sum_eight_bit_Y0), 3, 0, 11 },
+  { (char_T *)(&process_P.sum_eight_bit_Y0), 3, 0, 13 },
 
   { (char_T *)(&process_P.TriggeredSubsystem_h.tx_Y0), 3, 0, 1 },
 
@@ -118,7 +126,7 @@ static DataTypeTransition rtPTransitions[] = {
 
 /* data type transition table for Parameters structure */
 static DataTypeTransitionTable rtPTransTable = {
-  9U,
+  10U,
   rtPTransitions
 };
 
