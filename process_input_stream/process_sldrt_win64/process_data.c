@@ -3,9 +3,9 @@
  *
  * Code generation for model "process".
  *
- * Model version              : 2.467
+ * Model version              : 2.475
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Tue Mar 30 22:32:46 2021
+ * C source code generated on : Tue Mar 30 22:44:11 2021
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -27,29 +27,29 @@ P_process_T process_P = {
   /* Variable: kGrdCmdSize
    * Referenced by:
    *   '<S11>/MATLAB Function'
-   *   '<S19>/Constant1'
-   *   '<S19>/Constant3'
+   *   '<S20>/Constant1'
+   *   '<S20>/Constant3'
    */
   1U,
 
   /* Variable: kGrdCrcSize
    * Referenced by:
    *   '<S11>/MATLAB Function'
-   *   '<S19>/Constant4'
+   *   '<S20>/Constant4'
    */
   1U,
 
   /* Variable: kGrdFrameStart
    * Referenced by:
    *   '<S11>/MATLAB Function'
-   *   '<S19>/Constant'
+   *   '<S20>/Constant'
    */
   239U,
 
   /* Variable: kGrdFrameStartSize
    * Referenced by:
    *   '<S11>/MATLAB Function'
-   *   '<S19>/Constant2'
+   *   '<S20>/Constant2'
    */
   1U,
 
@@ -248,7 +248,17 @@ P_process_T process_P = {
    */
   1.0,
 
+  /* Computed Parameter: Accumulator_IC_c
+   * Referenced by: '<S15>/Accumulator'
+   */
+  0U,
+
   /* Computed Parameter: Accumulator_IC_j
+   * Referenced by: '<S17>/Accumulator'
+   */
+  0U,
+
+  /* Computed Parameter: Accumulator_IC_j3
    * Referenced by: '<S7>/Accumulator'
    */
   0U,
@@ -279,7 +289,7 @@ P_process_T process_P = {
   0U,
 
   /* Computed Parameter: sum_eight_bit_Y0
-   * Referenced by: '<S19>/sum_eight_bit'
+   * Referenced by: '<S20>/sum_eight_bit'
    */
   0U,
 
@@ -318,7 +328,7 @@ P_process_T process_P = {
    */
   0U,
 
-  /* Computed Parameter: Accumulator_IC_c
+  /* Computed Parameter: Accumulator_IC_cz
    * Referenced by: '<S12>/Accumulator'
    */
   0U,

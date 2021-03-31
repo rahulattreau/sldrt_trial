@@ -3,9 +3,9 @@
  *
  * Code generation for model "process".
  *
- * Model version              : 2.467
+ * Model version              : 2.475
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Tue Mar 30 22:32:46 2021
+ * C source code generated on : Tue Mar 30 22:44:11 2021
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -868,6 +868,10 @@ typedef struct {
   real_T Accumulator;                  /* '<S4>/Accumulator' */
   real_T Divide;                       /* '<S4>/Divide' */
   int32_T missed_ticks;                /* '<S10>/Packet Input2' */
+  uint16_T calls_16_bit;               /* '<S15>/Accumulator' */
+  uint16_T calls_16_bit_p;
+  uint16_T calls_16_bit_b;             /* '<S17>/Accumulator' */
+  uint16_T calls_16_bit_pp;
   uint16_T Accumulator_i;              /* '<S7>/Accumulator' */
   uint8_T DataTypeConversion;          /* '<S1>/Data Type Conversion' */
   uint8_T DataTypeConversion1;         /* '<S1>/Data Type Conversion1' */
@@ -888,7 +892,7 @@ typedef struct {
   uint8_T data_nm[4];
   uint8_T Accumulator_f;               /* '<S12>/Accumulator' */
   uint8_T y[144];                      /* '<S12>/MATLAB Function' */
-  uint8_T sum_eight_bit;               /* '<S19>/MATLAB Function1' */
+  uint8_T sum_eight_bit;               /* '<S20>/MATLAB Function1' */
   uint8_T data_vector[4];              /* '<S11>/MATLAB Function' */
   boolean_T available;                 /* '<S10>/Packet Input2' */
   boolean_T error;                     /* '<S10>/Packet Input2' */
@@ -940,6 +944,10 @@ typedef struct {
   } Scope4_PWORK;                      /* '<S3>/Scope4' */
 
   struct {
+    void *LoggedData[2];
+  } Scope5_PWORK;                      /* '<S3>/Scope5' */
+
+  struct {
     void *LoggedData;
   } Scope9_PWORK;                      /* '<S3>/Scope9' */
 
@@ -966,12 +974,14 @@ typedef struct {
 
   struct {
     void *LoggedData;
-  } Scope1_PWORK_m;                    /* '<S11>/Scope1' */
+  } Scope1_PWORK_m;                    /* '<S19>/Scope1' */
 
   struct {
     void *LoggedData;
   } Scope_PWORK_mw;                    /* '<S12>/Scope' */
 
+  uint16_T Accumulator_DSTATE_b;       /* '<S15>/Accumulator' */
+  uint16_T Accumulator_DSTATE_c;       /* '<S17>/Accumulator' */
   uint16_T Accumulator_DSTATE_h;       /* '<S7>/Accumulator' */
   uint8_T UnitDelay_DSTATE;            /* '<S11>/Unit Delay' */
   uint8_T UnitDelay1_DSTATE[4];        /* '<S11>/Unit Delay1' */
@@ -985,7 +995,7 @@ typedef struct {
   int8_T Accumulator_PrevResetState;   /* '<S4>/Accumulator' */
   int8_T message_rx_looper_SubsysRanBC;/* '<S3>/message_rx_looper' */
   int8_T Accumulator_PrevResetState_n; /* '<S12>/Accumulator' */
-  int8_T crc_SubsysRanBC;              /* '<S11>/crc' */
+  int8_T crc_SubsysRanBC;              /* '<S19>/crc' */
   int8_T TriggeredSubsystem_SubsysRanBC;/* '<S7>/Triggered Subsystem' */
   DW_TriggeredSubsystem_process_T TriggeredSubsystem_n;/* '<S9>/Triggered Subsystem' */
   DW_TriggeredSubsystem_process_T TriggeredSubsystem_d;/* '<S8>/Triggered Subsystem' */
@@ -993,7 +1003,7 @@ typedef struct {
 
 /* Zero-crossing (trigger) state */
 typedef struct {
-  ZCSigState crc_Trig_ZCE;             /* '<S11>/crc' */
+  ZCSigState crc_Trig_ZCE;             /* '<S19>/crc' */
   ZCE_TriggeredSubsystem_process_T TriggeredSubsystem_n;/* '<S9>/Triggered Subsystem' */
   ZCE_TriggeredSubsystem_process_T TriggeredSubsystem_d;/* '<S8>/Triggered Subsystem' */
   ZCSigState TriggeredSubsystem_Trig_ZCE_m;/* '<S7>/Triggered Subsystem' */
@@ -1024,23 +1034,23 @@ struct P_process_T_ {
   uint8_T kGrdCmdSize;                 /* Variable: kGrdCmdSize
                                         * Referenced by:
                                         *   '<S11>/MATLAB Function'
-                                        *   '<S19>/Constant1'
-                                        *   '<S19>/Constant3'
+                                        *   '<S20>/Constant1'
+                                        *   '<S20>/Constant3'
                                         */
   uint8_T kGrdCrcSize;                 /* Variable: kGrdCrcSize
                                         * Referenced by:
                                         *   '<S11>/MATLAB Function'
-                                        *   '<S19>/Constant4'
+                                        *   '<S20>/Constant4'
                                         */
   uint8_T kGrdFrameStart;              /* Variable: kGrdFrameStart
                                         * Referenced by:
                                         *   '<S11>/MATLAB Function'
-                                        *   '<S19>/Constant'
+                                        *   '<S20>/Constant'
                                         */
   uint8_T kGrdFrameStartSize;          /* Variable: kGrdFrameStartSize
                                         * Referenced by:
                                         *   '<S11>/MATLAB Function'
-                                        *   '<S19>/Constant2'
+                                        *   '<S20>/Constant2'
                                         */
   uint8_T kGrdMsgIdSize;               /* Variable: kGrdMsgIdSize
                                         * Referenced by: '<S11>/MATLAB Function'
@@ -1154,7 +1164,13 @@ struct P_process_T_ {
   real_T Constant18_Value;             /* Expression: 1
                                         * Referenced by: '<S4>/Constant18'
                                         */
+  uint16_T Accumulator_IC_c;           /* Computed Parameter: Accumulator_IC_c
+                                        * Referenced by: '<S15>/Accumulator'
+                                        */
   uint16_T Accumulator_IC_j;           /* Computed Parameter: Accumulator_IC_j
+                                        * Referenced by: '<S17>/Accumulator'
+                                        */
+  uint16_T Accumulator_IC_j3;          /* Computed Parameter: Accumulator_IC_j3
                                         * Referenced by: '<S7>/Accumulator'
                                         */
   boolean_T UnitDelay5_InitialCondition;/* Expression: false
@@ -1173,7 +1189,7 @@ struct P_process_T_ {
                                         * Referenced by: '<S13>/tx'
                                         */
   uint8_T sum_eight_bit_Y0;            /* Computed Parameter: sum_eight_bit_Y0
-                                        * Referenced by: '<S19>/sum_eight_bit'
+                                        * Referenced by: '<S20>/sum_eight_bit'
                                         */
   uint8_T y_Y0;                        /* Computed Parameter: y_Y0
                                         * Referenced by: '<S5>/y'
@@ -1200,7 +1216,7 @@ struct P_process_T_ {
   uint8_T UnitDelay6_InitialCondition; /* Expression: uint8(0)
                                         * Referenced by: '<S11>/Unit Delay6'
                                         */
-  uint8_T Accumulator_IC_c;            /* Computed Parameter: Accumulator_IC_c
+  uint8_T Accumulator_IC_cz;           /* Computed Parameter: Accumulator_IC_cz
                                         * Referenced by: '<S12>/Accumulator'
                                         */
   uint8_T ResettableDelay_InitialCondition;
@@ -1374,9 +1390,10 @@ extern RT_MODEL_process_T *const process_M;
  * '<S16>'  : 'process/serial_rx/message_rx_looper/holder_msgID_0x2/Triggered Subsystem'
  * '<S17>'  : 'process/serial_rx/message_rx_looper/holder_msgID_0x2/count_number_of_calls'
  * '<S18>'  : 'process/serial_rx/message_rx_looper/parser/MATLAB Function'
- * '<S19>'  : 'process/serial_rx/message_rx_looper/parser/crc'
- * '<S20>'  : 'process/serial_rx/message_rx_looper/parser/crc/MATLAB Function1'
- * '<S21>'  : 'process/serial_rx/message_rx_looper/vectorized_available_flags/MATLAB Function'
- * '<S22>'  : 'process/serial_rx/message_rx_looper/vectorized_available_flags/y_out'
+ * '<S19>'  : 'process/serial_rx/message_rx_looper/parser/crc_calc'
+ * '<S20>'  : 'process/serial_rx/message_rx_looper/parser/crc_calc/crc'
+ * '<S21>'  : 'process/serial_rx/message_rx_looper/parser/crc_calc/crc/MATLAB Function1'
+ * '<S22>'  : 'process/serial_rx/message_rx_looper/vectorized_available_flags/MATLAB Function'
+ * '<S23>'  : 'process/serial_rx/message_rx_looper/vectorized_available_flags/y_out'
  */
 #endif                                 /* RTW_HEADER_process_h_ */

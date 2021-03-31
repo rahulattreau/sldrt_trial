@@ -3,9 +3,9 @@
  *
  * Code generation for model "process".
  *
- * Model version              : 2.467
+ * Model version              : 2.475
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Tue Mar 30 22:32:46 2021
+ * C source code generated on : Tue Mar 30 22:44:11 2021
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -64,7 +64,7 @@ static DataTypeTransition rtBTransitions[] = {
 
   { (char_T *)(&process_B.missed_ticks), 6, 0, 1 },
 
-  { (char_T *)(&process_B.Accumulator_i), 5, 0, 1 },
+  { (char_T *)(&process_B.calls_16_bit), 5, 0, 5 },
 
   { (char_T *)(&process_B.DataTypeConversion), 3, 0, 173 },
 
@@ -77,9 +77,9 @@ static DataTypeTransition rtBTransitions[] = {
 
   { (char_T *)(&process_DW.UnitDelay2_DSTATE), 0, 0, 2 },
 
-  { (char_T *)(&process_DW.PacketOutput_PWORK[0]), 11, 0, 23 },
+  { (char_T *)(&process_DW.PacketOutput_PWORK[0]), 11, 0, 25 },
 
-  { (char_T *)(&process_DW.Accumulator_DSTATE_h), 5, 0, 1 },
+  { (char_T *)(&process_DW.Accumulator_DSTATE_b), 5, 0, 3 },
 
   { (char_T *)(&process_DW.UnitDelay_DSTATE), 3, 0, 154 },
 
@@ -114,7 +114,7 @@ static DataTypeTransition rtPTransitions[] = {
 
   { (char_T *)(&process_P.Constant_Value), 0, 0, 21 },
 
-  { (char_T *)(&process_P.Accumulator_IC_j), 5, 0, 1 },
+  { (char_T *)(&process_P.Accumulator_IC_c), 5, 0, 3 },
 
   { (char_T *)(&process_P.UnitDelay5_InitialCondition), 8, 0, 4 },
 

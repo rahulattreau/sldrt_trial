@@ -230,12 +230,20 @@
       paramMap.sections(6) = section;
       clear section
       
-      section.nData     = 1;
-      section.data(1)  = dumData; %prealloc
+      section.nData     = 3;
+      section.data(3)  = dumData; %prealloc
       
-	  ;% process_P.Accumulator_IC_j
+	  ;% process_P.Accumulator_IC_c
 	  section.data(1).logicalSrcIdx = 44;
 	  section.data(1).dtTransOffset = 0;
+	
+	  ;% process_P.Accumulator_IC_j
+	  section.data(2).logicalSrcIdx = 45;
+	  section.data(2).dtTransOffset = 1;
+	
+	  ;% process_P.Accumulator_IC_j3
+	  section.data(3).logicalSrcIdx = 46;
+	  section.data(3).dtTransOffset = 2;
 	
       nTotData = nTotData + section.nData;
       paramMap.sections(7) = section;
@@ -245,19 +253,19 @@
       section.data(4)  = dumData; %prealloc
       
 	  ;% process_P.UnitDelay5_InitialCondition
-	  section.data(1).logicalSrcIdx = 45;
+	  section.data(1).logicalSrcIdx = 47;
 	  section.data(1).dtTransOffset = 0;
 	
 	  ;% process_P.Constant16_Value
-	  section.data(2).logicalSrcIdx = 46;
+	  section.data(2).logicalSrcIdx = 48;
 	  section.data(2).dtTransOffset = 1;
 	
 	  ;% process_P.Constant_Value_n
-	  section.data(3).logicalSrcIdx = 47;
+	  section.data(3).logicalSrcIdx = 49;
 	  section.data(3).dtTransOffset = 2;
 	
 	  ;% process_P.Constant18_Value_a
-	  section.data(4).logicalSrcIdx = 48;
+	  section.data(4).logicalSrcIdx = 50;
 	  section.data(4).dtTransOffset = 3;
 	
       nTotData = nTotData + section.nData;
@@ -268,47 +276,47 @@
       section.data(11)  = dumData; %prealloc
       
 	  ;% process_P.tx_Y0
-	  section.data(1).logicalSrcIdx = 49;
+	  section.data(1).logicalSrcIdx = 51;
 	  section.data(1).dtTransOffset = 0;
 	
 	  ;% process_P.sum_eight_bit_Y0
-	  section.data(2).logicalSrcIdx = 50;
+	  section.data(2).logicalSrcIdx = 52;
 	  section.data(2).dtTransOffset = 1;
 	
 	  ;% process_P.y_Y0
-	  section.data(3).logicalSrcIdx = 51;
+	  section.data(3).logicalSrcIdx = 53;
 	  section.data(3).dtTransOffset = 2;
 	
 	  ;% process_P.UnitDelay_InitialCondition
-	  section.data(4).logicalSrcIdx = 52;
+	  section.data(4).logicalSrcIdx = 54;
 	  section.data(4).dtTransOffset = 3;
 	
 	  ;% process_P.UnitDelay1_InitialCondition
-	  section.data(5).logicalSrcIdx = 53;
+	  section.data(5).logicalSrcIdx = 55;
 	  section.data(5).dtTransOffset = 4;
 	
 	  ;% process_P.UnitDelay2_InitialCondition_m
-	  section.data(6).logicalSrcIdx = 54;
+	  section.data(6).logicalSrcIdx = 56;
 	  section.data(6).dtTransOffset = 5;
 	
 	  ;% process_P.UnitDelay3_InitialCondition
-	  section.data(7).logicalSrcIdx = 55;
+	  section.data(7).logicalSrcIdx = 57;
 	  section.data(7).dtTransOffset = 6;
 	
 	  ;% process_P.UnitDelay4_InitialCondition
-	  section.data(8).logicalSrcIdx = 56;
+	  section.data(8).logicalSrcIdx = 58;
 	  section.data(8).dtTransOffset = 7;
 	
 	  ;% process_P.UnitDelay6_InitialCondition
-	  section.data(9).logicalSrcIdx = 57;
+	  section.data(9).logicalSrcIdx = 59;
 	  section.data(9).dtTransOffset = 8;
 	
-	  ;% process_P.Accumulator_IC_c
-	  section.data(10).logicalSrcIdx = 58;
+	  ;% process_P.Accumulator_IC_cz
+	  section.data(10).logicalSrcIdx = 60;
 	  section.data(10).dtTransOffset = 9;
 	
 	  ;% process_P.ResettableDelay_InitialCondition
-	  section.data(11).logicalSrcIdx = 59;
+	  section.data(11).logicalSrcIdx = 61;
 	  section.data(11).dtTransOffset = 10;
 	
       nTotData = nTotData + section.nData;
@@ -319,7 +327,7 @@
       section.data(1)  = dumData; %prealloc
       
 	  ;% process_P.TriggeredSubsystem_n.tx_Y0
-	  section.data(1).logicalSrcIdx = 60;
+	  section.data(1).logicalSrcIdx = 62;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -330,7 +338,7 @@
       section.data(1)  = dumData; %prealloc
       
 	  ;% process_P.TriggeredSubsystem_d.tx_Y0
-	  section.data(1).logicalSrcIdx = 61;
+	  section.data(1).logicalSrcIdx = 63;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -408,12 +416,28 @@
       sigMap.sections(2) = section;
       clear section
       
-      section.nData     = 1;
-      section.data(1)  = dumData; %prealloc
+      section.nData     = 5;
+      section.data(5)  = dumData; %prealloc
       
-	  ;% process_B.Accumulator_i
+	  ;% process_B.calls_16_bit
 	  section.data(1).logicalSrcIdx = 4;
 	  section.data(1).dtTransOffset = 0;
+	
+	  ;% process_B.calls_16_bit_p
+	  section.data(2).logicalSrcIdx = 5;
+	  section.data(2).dtTransOffset = 1;
+	
+	  ;% process_B.calls_16_bit_b
+	  section.data(3).logicalSrcIdx = 6;
+	  section.data(3).dtTransOffset = 2;
+	
+	  ;% process_B.calls_16_bit_pp
+	  section.data(4).logicalSrcIdx = 7;
+	  section.data(4).dtTransOffset = 3;
+	
+	  ;% process_B.Accumulator_i
+	  section.data(5).logicalSrcIdx = 8;
+	  section.data(5).dtTransOffset = 4;
 	
       nTotData = nTotData + section.nData;
       sigMap.sections(3) = section;
@@ -423,87 +447,87 @@
       section.data(21)  = dumData; %prealloc
       
 	  ;% process_B.DataTypeConversion
-	  section.data(1).logicalSrcIdx = 5;
+	  section.data(1).logicalSrcIdx = 9;
 	  section.data(1).dtTransOffset = 0;
 	
 	  ;% process_B.DataTypeConversion1
-	  section.data(2).logicalSrcIdx = 6;
+	  section.data(2).logicalSrcIdx = 10;
 	  section.data(2).dtTransOffset = 1;
 	
 	  ;% process_B.DataTypeConversion2
-	  section.data(3).logicalSrcIdx = 7;
+	  section.data(3).logicalSrcIdx = 11;
 	  section.data(3).dtTransOffset = 2;
 	
 	  ;% process_B.DataTypeConversion3
-	  section.data(4).logicalSrcIdx = 8;
+	  section.data(4).logicalSrcIdx = 12;
 	  section.data(4).dtTransOffset = 3;
 	
 	  ;% process_B.DataTypeConversion4
-	  section.data(5).logicalSrcIdx = 9;
+	  section.data(5).logicalSrcIdx = 13;
 	  section.data(5).dtTransOffset = 4;
 	
 	  ;% process_B.DataTypeConversion5
-	  section.data(6).logicalSrcIdx = 10;
+	  section.data(6).logicalSrcIdx = 14;
 	  section.data(6).dtTransOffset = 5;
 	
 	  ;% process_B.DataTypeConversion10
-	  section.data(7).logicalSrcIdx = 11;
+	  section.data(7).logicalSrcIdx = 15;
 	  section.data(7).dtTransOffset = 6;
 	
 	  ;% process_B.DataTypeConversion11
-	  section.data(8).logicalSrcIdx = 12;
+	  section.data(8).logicalSrcIdx = 16;
 	  section.data(8).dtTransOffset = 7;
 	
 	  ;% process_B.DataTypeConversion12
-	  section.data(9).logicalSrcIdx = 13;
+	  section.data(9).logicalSrcIdx = 17;
 	  section.data(9).dtTransOffset = 8;
 	
 	  ;% process_B.DataTypeConversion13
-	  section.data(10).logicalSrcIdx = 14;
+	  section.data(10).logicalSrcIdx = 18;
 	  section.data(10).dtTransOffset = 9;
 	
 	  ;% process_B.DataTypeConversion6
-	  section.data(11).logicalSrcIdx = 15;
+	  section.data(11).logicalSrcIdx = 19;
 	  section.data(11).dtTransOffset = 10;
 	
 	  ;% process_B.DataTypeConversion7
-	  section.data(12).logicalSrcIdx = 16;
+	  section.data(12).logicalSrcIdx = 20;
 	  section.data(12).dtTransOffset = 11;
 	
 	  ;% process_B.DataTypeConversion8
-	  section.data(13).logicalSrcIdx = 17;
+	  section.data(13).logicalSrcIdx = 21;
 	  section.data(13).dtTransOffset = 12;
 	
 	  ;% process_B.DataTypeConversion9
-	  section.data(14).logicalSrcIdx = 18;
+	  section.data(14).logicalSrcIdx = 22;
 	  section.data(14).dtTransOffset = 13;
 	
 	  ;% process_B.data
-	  section.data(15).logicalSrcIdx = 19;
+	  section.data(15).logicalSrcIdx = 23;
 	  section.data(15).dtTransOffset = 14;
 	
 	  ;% process_B.data_n
-	  section.data(16).logicalSrcIdx = 20;
+	  section.data(16).logicalSrcIdx = 24;
 	  section.data(16).dtTransOffset = 15;
 	
 	  ;% process_B.data_nm
-	  section.data(17).logicalSrcIdx = 21;
+	  section.data(17).logicalSrcIdx = 25;
 	  section.data(17).dtTransOffset = 19;
 	
 	  ;% process_B.Accumulator_f
-	  section.data(18).logicalSrcIdx = 22;
+	  section.data(18).logicalSrcIdx = 26;
 	  section.data(18).dtTransOffset = 23;
 	
 	  ;% process_B.y
-	  section.data(19).logicalSrcIdx = 24;
+	  section.data(19).logicalSrcIdx = 28;
 	  section.data(19).dtTransOffset = 24;
 	
 	  ;% process_B.sum_eight_bit
-	  section.data(20).logicalSrcIdx = 25;
+	  section.data(20).logicalSrcIdx = 29;
 	  section.data(20).dtTransOffset = 168;
 	
 	  ;% process_B.data_vector
-	  section.data(21).logicalSrcIdx = 27;
+	  section.data(21).logicalSrcIdx = 31;
 	  section.data(21).dtTransOffset = 169;
 	
       nTotData = nTotData + section.nData;
@@ -514,15 +538,15 @@
       section.data(3)  = dumData; %prealloc
       
 	  ;% process_B.available
-	  section.data(1).logicalSrcIdx = 31;
+	  section.data(1).logicalSrcIdx = 35;
 	  section.data(1).dtTransOffset = 0;
 	
 	  ;% process_B.error
-	  section.data(2).logicalSrcIdx = 32;
+	  section.data(2).logicalSrcIdx = 36;
 	  section.data(2).dtTransOffset = 1;
 	
 	  ;% process_B.new_data
-	  section.data(3).logicalSrcIdx = 35;
+	  section.data(3).logicalSrcIdx = 41;
 	  section.data(3).dtTransOffset = 2;
 	
       nTotData = nTotData + section.nData;
@@ -533,7 +557,7 @@
       section.data(1)  = dumData; %prealloc
       
 	  ;% process_B.TriggeredSubsystem_n.rx
-	  section.data(1).logicalSrcIdx = 36;
+	  section.data(1).logicalSrcIdx = 42;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -544,7 +568,7 @@
       section.data(1)  = dumData; %prealloc
       
 	  ;% process_B.TriggeredSubsystem_d.rx
-	  section.data(1).logicalSrcIdx = 37;
+	  section.data(1).logicalSrcIdx = 43;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -607,8 +631,8 @@
       dworkMap.sections(1) = section;
       clear section
       
-      section.nData     = 20;
-      section.data(20)  = dumData; %prealloc
+      section.nData     = 21;
+      section.data(21)  = dumData; %prealloc
       
 	  ;% process_DW.PacketOutput_PWORK
 	  section.data(1).logicalSrcIdx = 2;
@@ -654,52 +678,64 @@
 	  section.data(11).logicalSrcIdx = 12;
 	  section.data(11).dtTransOffset = 13;
 	
-	  ;% process_DW.Scope9_PWORK.LoggedData
+	  ;% process_DW.Scope5_PWORK.LoggedData
 	  section.data(12).logicalSrcIdx = 13;
 	  section.data(12).dtTransOffset = 14;
 	
-	  ;% process_DW.PacketInput2_PWORK
+	  ;% process_DW.Scope9_PWORK.LoggedData
 	  section.data(13).logicalSrcIdx = 14;
-	  section.data(13).dtTransOffset = 15;
+	  section.data(13).dtTransOffset = 16;
+	
+	  ;% process_DW.PacketInput2_PWORK
+	  section.data(14).logicalSrcIdx = 15;
+	  section.data(14).dtTransOffset = 17;
 	
 	  ;% process_DW.Scope_PWORK_g.LoggedData
-	  section.data(14).logicalSrcIdx = 15;
-	  section.data(14).dtTransOffset = 16;
+	  section.data(15).logicalSrcIdx = 16;
+	  section.data(15).dtTransOffset = 18;
 	
 	  ;% process_DW.Scope_PWORK_m.LoggedData
-	  section.data(15).logicalSrcIdx = 16;
-	  section.data(15).dtTransOffset = 17;
+	  section.data(16).logicalSrcIdx = 17;
+	  section.data(16).dtTransOffset = 19;
 	
 	  ;% process_DW.Scope1_PWORK_g.LoggedData
-	  section.data(16).logicalSrcIdx = 17;
-	  section.data(16).dtTransOffset = 18;
+	  section.data(17).logicalSrcIdx = 18;
+	  section.data(17).dtTransOffset = 20;
 	
 	  ;% process_DW.Scope2_PWORK_f.LoggedData
-	  section.data(17).logicalSrcIdx = 18;
-	  section.data(17).dtTransOffset = 19;
+	  section.data(18).logicalSrcIdx = 19;
+	  section.data(18).dtTransOffset = 21;
 	
 	  ;% process_DW.Scope3_PWORK_n.LoggedData
-	  section.data(18).logicalSrcIdx = 19;
-	  section.data(18).dtTransOffset = 20;
+	  section.data(19).logicalSrcIdx = 20;
+	  section.data(19).dtTransOffset = 22;
 	
 	  ;% process_DW.Scope1_PWORK_m.LoggedData
-	  section.data(19).logicalSrcIdx = 20;
-	  section.data(19).dtTransOffset = 21;
+	  section.data(20).logicalSrcIdx = 21;
+	  section.data(20).dtTransOffset = 23;
 	
 	  ;% process_DW.Scope_PWORK_mw.LoggedData
-	  section.data(20).logicalSrcIdx = 21;
-	  section.data(20).dtTransOffset = 22;
+	  section.data(21).logicalSrcIdx = 22;
+	  section.data(21).dtTransOffset = 24;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(2) = section;
       clear section
       
-      section.nData     = 1;
-      section.data(1)  = dumData; %prealloc
+      section.nData     = 3;
+      section.data(3)  = dumData; %prealloc
       
-	  ;% process_DW.Accumulator_DSTATE_h
-	  section.data(1).logicalSrcIdx = 22;
+	  ;% process_DW.Accumulator_DSTATE_b
+	  section.data(1).logicalSrcIdx = 23;
 	  section.data(1).dtTransOffset = 0;
+	
+	  ;% process_DW.Accumulator_DSTATE_c
+	  section.data(2).logicalSrcIdx = 24;
+	  section.data(2).dtTransOffset = 1;
+	
+	  ;% process_DW.Accumulator_DSTATE_h
+	  section.data(3).logicalSrcIdx = 25;
+	  section.data(3).dtTransOffset = 2;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(3) = section;
@@ -709,35 +745,35 @@
       section.data(8)  = dumData; %prealloc
       
 	  ;% process_DW.UnitDelay_DSTATE
-	  section.data(1).logicalSrcIdx = 23;
+	  section.data(1).logicalSrcIdx = 26;
 	  section.data(1).dtTransOffset = 0;
 	
 	  ;% process_DW.UnitDelay1_DSTATE
-	  section.data(2).logicalSrcIdx = 24;
+	  section.data(2).logicalSrcIdx = 27;
 	  section.data(2).dtTransOffset = 1;
 	
 	  ;% process_DW.UnitDelay2_DSTATE_b
-	  section.data(3).logicalSrcIdx = 25;
+	  section.data(3).logicalSrcIdx = 28;
 	  section.data(3).dtTransOffset = 5;
 	
 	  ;% process_DW.UnitDelay3_DSTATE
-	  section.data(4).logicalSrcIdx = 26;
+	  section.data(4).logicalSrcIdx = 29;
 	  section.data(4).dtTransOffset = 6;
 	
 	  ;% process_DW.UnitDelay4_DSTATE
-	  section.data(5).logicalSrcIdx = 27;
+	  section.data(5).logicalSrcIdx = 30;
 	  section.data(5).dtTransOffset = 7;
 	
 	  ;% process_DW.UnitDelay6_DSTATE
-	  section.data(6).logicalSrcIdx = 28;
+	  section.data(6).logicalSrcIdx = 31;
 	  section.data(6).dtTransOffset = 8;
 	
 	  ;% process_DW.Accumulator_DSTATE_n
-	  section.data(7).logicalSrcIdx = 29;
+	  section.data(7).logicalSrcIdx = 32;
 	  section.data(7).dtTransOffset = 9;
 	
 	  ;% process_DW.ResettableDelay_DSTATE
-	  section.data(8).logicalSrcIdx = 30;
+	  section.data(8).logicalSrcIdx = 33;
 	  section.data(8).dtTransOffset = 10;
 	
       nTotData = nTotData + section.nData;
@@ -748,7 +784,7 @@
       section.data(1)  = dumData; %prealloc
       
 	  ;% process_DW.UnitDelay5_DSTATE
-	  section.data(1).logicalSrcIdx = 31;
+	  section.data(1).logicalSrcIdx = 34;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -759,23 +795,23 @@
       section.data(5)  = dumData; %prealloc
       
 	  ;% process_DW.Accumulator_PrevResetState
-	  section.data(1).logicalSrcIdx = 32;
+	  section.data(1).logicalSrcIdx = 35;
 	  section.data(1).dtTransOffset = 0;
 	
 	  ;% process_DW.message_rx_looper_SubsysRanBC
-	  section.data(2).logicalSrcIdx = 33;
+	  section.data(2).logicalSrcIdx = 36;
 	  section.data(2).dtTransOffset = 1;
 	
 	  ;% process_DW.Accumulator_PrevResetState_n
-	  section.data(3).logicalSrcIdx = 34;
+	  section.data(3).logicalSrcIdx = 37;
 	  section.data(3).dtTransOffset = 2;
 	
 	  ;% process_DW.crc_SubsysRanBC
-	  section.data(4).logicalSrcIdx = 35;
+	  section.data(4).logicalSrcIdx = 38;
 	  section.data(4).dtTransOffset = 3;
 	
 	  ;% process_DW.TriggeredSubsystem_SubsysRanBC
-	  section.data(5).logicalSrcIdx = 36;
+	  section.data(5).logicalSrcIdx = 39;
 	  section.data(5).dtTransOffset = 4;
 	
       nTotData = nTotData + section.nData;
@@ -786,7 +822,7 @@
       section.data(1)  = dumData; %prealloc
       
 	  ;% process_DW.TriggeredSubsystem_n.TriggeredSubsystem_SubsysRanBC
-	  section.data(1).logicalSrcIdx = 37;
+	  section.data(1).logicalSrcIdx = 40;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -797,7 +833,7 @@
       section.data(1)  = dumData; %prealloc
       
 	  ;% process_DW.TriggeredSubsystem_d.TriggeredSubsystem_SubsysRanBC
-	  section.data(1).logicalSrcIdx = 38;
+	  section.data(1).logicalSrcIdx = 41;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -830,8 +866,8 @@
   ;%
 
 
-  targMap.checksum0 = 1547289812;
-  targMap.checksum1 = 4132168702;
-  targMap.checksum2 = 1735594953;
-  targMap.checksum3 = 979310510;
+  targMap.checksum0 = 2995657403;
+  targMap.checksum1 = 2059044149;
+  targMap.checksum2 = 4254829868;
+  targMap.checksum3 = 3128716530;
 
