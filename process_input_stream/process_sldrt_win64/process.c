@@ -3,9 +3,9 @@
  *
  * Code generation for model "process".
  *
- * Model version              : 2.406
+ * Model version              : 2.467
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Tue Mar 30 21:41:59 2021
+ * C source code generated on : Tue Mar 30 22:32:46 2021
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -57,15 +57,14 @@ RT_MODEL_process_T *const process_M = &process_M_;
 
 /*
  * System initialize for enable_with_trigger system:
- *    '<S6>/Triggered Subsystem'
- *    '<S7>/Triggered Subsystem'
  *    '<S8>/Triggered Subsystem'
+ *    '<S9>/Triggered Subsystem'
  */
 void process_TriggeredSubsystem_Init(B_TriggeredSubsystem_process_T *localB,
   P_TriggeredSubsystem_process_T *localP)
 {
-  /* SystemInitialize for Outport: '<S12>/tx' incorporates:
-   *  Inport: '<S12>/rx'
+  /* SystemInitialize for Outport: '<S14>/tx' incorporates:
+   *  Inport: '<S14>/rx'
    */
   localB->rx[0] = localP->tx_Y0;
   localB->rx[1] = localP->tx_Y0;
@@ -75,22 +74,21 @@ void process_TriggeredSubsystem_Init(B_TriggeredSubsystem_process_T *localB,
 
 /*
  * Output and update for enable_with_trigger system:
- *    '<S6>/Triggered Subsystem'
- *    '<S7>/Triggered Subsystem'
  *    '<S8>/Triggered Subsystem'
+ *    '<S9>/Triggered Subsystem'
  */
 void process_TriggeredSubsystem(boolean_T rtu_Enable, boolean_T rtu_Trigger,
   const uint8_T rtu_rx[4], B_TriggeredSubsystem_process_T *localB,
   DW_TriggeredSubsystem_process_T *localDW, ZCE_TriggeredSubsystem_process_T
   *localZCE)
 {
-  /* Outputs for Enabled and Triggered SubSystem: '<S6>/Triggered Subsystem' incorporates:
-   *  EnablePort: '<S12>/Enable'
-   *  TriggerPort: '<S12>/Trigger'
+  /* Outputs for Enabled and Triggered SubSystem: '<S8>/Triggered Subsystem' incorporates:
+   *  EnablePort: '<S14>/Enable'
+   *  TriggerPort: '<S14>/Trigger'
    */
   if (rtu_Enable && (rtu_Trigger && (localZCE->TriggeredSubsystem_Trig_ZCE !=
         POS_ZCSIG))) {
-    /* Inport: '<S12>/rx' */
+    /* Inport: '<S14>/rx' */
     localB->rx[0] = rtu_rx[0];
     localB->rx[1] = rtu_rx[1];
     localB->rx[2] = rtu_rx[2];
@@ -100,7 +98,7 @@ void process_TriggeredSubsystem(boolean_T rtu_Enable, boolean_T rtu_Trigger,
 
   localZCE->TriggeredSubsystem_Trig_ZCE = rtu_Trigger;
 
-  /* End of Outputs for SubSystem: '<S6>/Triggered Subsystem' */
+  /* End of Outputs for SubSystem: '<S8>/Triggered Subsystem' */
 }
 
 /* Model output function */
@@ -118,11 +116,12 @@ void process_output(void)
   uint8_T s5_iter;
   uint8_T state;
   boolean_T loopCond;
-  boolean_T rtb_RelationalOperator_p;
-  boolean_T rtb_crc_calc;
 
   /* Reset subsysRan breadcrumbs */
-  srClearBC(process_DW.TriggeredSubsystem.TriggeredSubsystem_SubsysRanBC);
+  srClearBC(process_DW.TriggeredSubsystem_SubsysRanBC);
+
+  /* Reset subsysRan breadcrumbs */
+  srClearBC(process_DW.TriggeredSubsystem_d.TriggeredSubsystem_SubsysRanBC);
 
   /* Reset subsysRan breadcrumbs */
   srClearBC(process_DW.crc_SubsysRanBC);
@@ -130,346 +129,6 @@ void process_output(void)
   /* Reset subsysRan breadcrumbs */
   srClearBC(process_DW.message_rx_looper_SubsysRanBC);
 
-  /* S-Function (sldrttet): '<Root>/Execution Time' */
-  /* S-Function Block: <Root>/Execution Time */
-  {
-    RTBIO_DriverIO(INTERNALIO, (IODEVICE) RTBIOTOTALEXECUTIONTIME, IOREAD, 0, 0,
-                   &process_B.ExecutionTime, 0);
-  }
-
-  /* DiscreteIntegrator: '<S2>/Accumulator' */
-  process_B.Accumulator = process_DW.Accumulator_DSTATE;
-
-  /* Product: '<S2>/Divide' incorporates:
-   *  Bias: '<S2>/Bias'
-   *  Product: '<S2>/Product'
-   *  Sum: '<S2>/Add'
-   *  UnitDelay: '<S2>/Unit Delay2'
-   */
-  process_B.Divide = ((process_B.Accumulator + process_P.Bias_Bias) *
-                      process_DW.UnitDelay2_DSTATE + process_B.ExecutionTime) /
-    process_B.Accumulator;
-
-  /* Outputs for Iterator SubSystem: '<S3>/message_rx_looper' incorporates:
-   *  WhileIterator: '<S5>/While Iterator'
-   */
-  s5_iter = 1U;
-
-  /* Constant: '<S3>/Constant18' */
-  loopCond = process_P.Constant18_Value_a;
-  while (loopCond && (s5_iter <= 144)) {
-    /* Outputs for Iterator SubSystem: '<S3>/message_rx_looper' incorporates:
-     *  WhileIterator: '<S5>/While Iterator'
-     */
-    /* SystemInitialize for Iterator SubSystem: '<S3>/message_rx_looper' incorporates:
-     *  WhileIterator: '<S5>/While Iterator'
-     */
-    process_B.WhileIterator = s5_iter;
-
-    /* S-Function (sldrtpi): '<S9>/Packet Input2' */
-    /* S-Function Block: <S9>/Packet Input2 */
-    {
-      uint8_T indata[1U];
-      int status = RTBIO_DriverIO(0, STREAMINPUT, IOREAD, 1U,
-        &process_P.PacketInput2_PacketID, (double*) indata, NULL);
-      process_B.missed_ticks = 0;      /* Missed Ticks value is always zero */
-      process_B.error = (status>>1) & 0x1;/* Data Error port */
-      process_B.available = status & 0x1;/* Data Ready port */
-      if (status & 0x1) {
-        RTWin_ANYTYPEPTR indp;
-        indp.p_uint8_T = indata;
-        process_B.data = *indp.p_uint8_T++;
-      }
-    }
-
-    /* MATLAB Function: '<S10>/MATLAB Function' incorporates:
-     *  UnitDelay: '<S10>/Unit Delay'
-     *  UnitDelay: '<S10>/Unit Delay1'
-     *  UnitDelay: '<S10>/Unit Delay2'
-     *  UnitDelay: '<S10>/Unit Delay3'
-     *  UnitDelay: '<S10>/Unit Delay4'
-     *  UnitDelay: '<S10>/Unit Delay5'
-     *  UnitDelay: '<S10>/Unit Delay6'
-     */
-    rtb_crc_calc = false;
-    state = process_DW.UnitDelay_DSTATE;
-    process_B.data_vector[0] = process_DW.UnitDelay1_DSTATE[0];
-    process_B.data_vector[1] = process_DW.UnitDelay1_DSTATE[1];
-    process_B.data_vector[2] = process_DW.UnitDelay1_DSTATE[2];
-    process_B.data_vector[3] = process_DW.UnitDelay1_DSTATE[3];
-    data_vector_index = process_DW.UnitDelay2_DSTATE_b;
-    packet_size = process_DW.UnitDelay3_DSTATE;
-    msg_id = process_DW.UnitDelay4_DSTATE;
-    process_B.new_data = process_DW.UnitDelay5_DSTATE;
-    switch (process_DW.UnitDelay_DSTATE) {
-     case 1U:
-      process_B.new_data = false;
-      msg_id = 0U;
-      process_B.data_vector[0] = 0U;
-      process_B.data_vector[1] = 0U;
-      process_B.data_vector[2] = 0U;
-      process_B.data_vector[3] = 0U;
-      data_vector_index = 1U;
-      packet_size = 0U;
-      if (process_B.available && (process_B.data == process_P.kGrdFrameStart)) {
-        i = (int32_T)(process_DW.UnitDelay_DSTATE + 1U);
-        if (process_DW.UnitDelay_DSTATE + 1U > 255U) {
-          i = 255;
-        }
-
-        state = (uint8_T)i;
-      }
-      break;
-
-     case 2U:
-      if (process_B.available) {
-        qY = (uint32_T)process_B.data - process_P.kGrdCmdSize;
-        if (qY > process_B.data) {
-          qY = 0U;
-        }
-
-        packet_size = (uint8_T)qY;
-        i = (int32_T)(process_DW.UnitDelay_DSTATE + 1U);
-        if (process_DW.UnitDelay_DSTATE + 1U > 255U) {
-          i = 255;
-        }
-
-        state = (uint8_T)i;
-      }
-      break;
-
-     case 3U:
-      if (process_B.available) {
-        msg_id = process_B.data;
-        i = (int32_T)(process_DW.UnitDelay_DSTATE + 1U);
-        if (process_DW.UnitDelay_DSTATE + 1U > 255U) {
-          i = 255;
-        }
-
-        state = (uint8_T)i;
-      }
-      break;
-
-     case 4U:
-      if (process_B.available) {
-        process_B.data_vector[process_DW.UnitDelay2_DSTATE_b - 1] =
-          process_B.data;
-        if (process_DW.UnitDelay2_DSTATE_b == process_DW.UnitDelay3_DSTATE) {
-          i = (int32_T)(process_DW.UnitDelay_DSTATE + 1U);
-          if (process_DW.UnitDelay_DSTATE + 1U > 255U) {
-            i = 255;
-          }
-
-          state = (uint8_T)i;
-          rtb_crc_calc = true;
-        }
-
-        i = (int32_T)(process_DW.UnitDelay2_DSTATE_b + 1U);
-        if (process_DW.UnitDelay2_DSTATE_b + 1U > 255U) {
-          i = 255;
-        }
-
-        data_vector_index = (uint8_T)i;
-      }
-      break;
-
-     case 5U:
-      if (process_B.available && (process_DW.UnitDelay6_DSTATE == process_B.data))
-      {
-        process_B.new_data = true;
-        state = 1U;
-      }
-      break;
-    }
-
-    /* End of MATLAB Function: '<S10>/MATLAB Function' */
-    /* RelationalOperator: '<S7>/Relational Operator' incorporates:
-     *  Constant: '<S7>/Constant'
-     */
-    loopCond = (msg_id == process_P.Constant_Value);
-
-    /* Outputs for Enabled and Triggered SubSystem: '<S7>/Triggered Subsystem' */
-    process_TriggeredSubsystem(loopCond, process_B.new_data,
-      process_B.data_vector, &process_B.TriggeredSubsystem_i,
-      &process_DW.TriggeredSubsystem_i, &process_PrevZCX.TriggeredSubsystem_i);
-
-    /* End of Outputs for SubSystem: '<S7>/Triggered Subsystem' */
-
-    /* RelationalOperator: '<S8>/Relational Operator' incorporates:
-     *  Constant: '<S8>/Constant'
-     */
-    rtb_RelationalOperator_p = (msg_id == process_P.Constant_Value_m);
-
-    /* Outputs for Enabled and Triggered SubSystem: '<S8>/Triggered Subsystem' */
-    process_TriggeredSubsystem(rtb_RelationalOperator_p, process_B.new_data,
-      process_B.data_vector, &process_B.TriggeredSubsystem_h,
-      &process_DW.TriggeredSubsystem_h, &process_PrevZCX.TriggeredSubsystem_h);
-
-    /* End of Outputs for SubSystem: '<S8>/Triggered Subsystem' */
-
-    /* Outputs for Enabled and Triggered SubSystem: '<S6>/Triggered Subsystem' */
-    /* Constant: '<S6>/Constant16' */
-    process_TriggeredSubsystem(process_P.Constant16_Value, process_B.new_data,
-      process_B.data_vector, &process_B.TriggeredSubsystem,
-      &process_DW.TriggeredSubsystem, &process_PrevZCX.TriggeredSubsystem);
-
-    /* End of Outputs for SubSystem: '<S6>/Triggered Subsystem' */
-
-    /* DiscreteIntegrator: '<S6>/Accumulator' */
-    process_B.Accumulator_i = process_DW.Accumulator_DSTATE_h;
-
-    /* DiscreteIntegrator: '<S7>/Accumulator' */
-    process_B.Accumulator_c = process_DW.Accumulator_DSTATE_j;
-
-    /* DiscreteIntegrator: '<S8>/Accumulator' */
-    process_B.Accumulator_a = process_DW.Accumulator_DSTATE_o;
-
-    /* Outputs for Triggered SubSystem: '<S10>/crc' incorporates:
-     *  TriggerPort: '<S16>/Trigger'
-     */
-    if (rtb_crc_calc && (process_PrevZCX.crc_Trig_ZCE != POS_ZCSIG)) {
-      /* Sum: '<S16>/Add1' incorporates:
-       *  Constant: '<S16>/Constant2'
-       *  Constant: '<S16>/Constant3'
-       *  Constant: '<S16>/Constant4'
-       */
-      rtb_Add1 = (uint8_T)((uint32_T)(uint8_T)((uint32_T)(uint8_T)((uint32_T)
-        process_P.kGrdFrameStartSize + process_P.kGrdCmdSize) +
-        process_P.kGrdCrcSize) + packet_size);
-
-      /* SignalConversion generated from: '<S17>/ SFunction ' incorporates:
-       *  Constant: '<S16>/Constant'
-       *  Constant: '<S16>/Constant1'
-       *  MATLAB Function: '<S16>/MATLAB Function1'
-       *  Sum: '<S16>/Add'
-       */
-      rtb_TmpSignalConversionAtSFunctionInport1[0] = process_P.kGrdFrameStart;
-      rtb_TmpSignalConversionAtSFunctionInport1[1] = (uint8_T)((uint32_T)
-        process_P.kGrdCmdSize + packet_size);
-      rtb_TmpSignalConversionAtSFunctionInport1[2] = msg_id;
-      rtb_TmpSignalConversionAtSFunctionInport1[3] = process_B.data_vector[0];
-      rtb_TmpSignalConversionAtSFunctionInport1[4] = process_B.data_vector[1];
-      rtb_TmpSignalConversionAtSFunctionInport1[5] = process_B.data_vector[2];
-      rtb_TmpSignalConversionAtSFunctionInport1[6] = process_B.data_vector[3];
-
-      /* MATLAB Function: '<S16>/MATLAB Function1' */
-      sum = 0U;
-      for (i = 0; i < rtb_Add1; i++) {
-        qY = (uint32_T)sum + rtb_TmpSignalConversionAtSFunctionInport1[i];
-        if (qY > 65535U) {
-          qY = 65535U;
-        }
-
-        sum = (uint16_T)qY;
-      }
-
-      if (sum > 255) {
-        sum = (uint16_T)((int32_T)((uint32_T)sum >> 8) + (sum & 255));
-      }
-
-      if (sum > 255) {
-        sum = 255U;
-      }
-
-      process_B.sum_eight_bit = (uint8_T)sum;
-      process_DW.crc_SubsysRanBC = 4;
-    }
-
-    process_PrevZCX.crc_Trig_ZCE = rtb_crc_calc;
-
-    /* End of Outputs for SubSystem: '<S10>/crc' */
-    /* RelationalOperator: '<S11>/Relational Operator' incorporates:
-     *  Constant: '<S11>/Constant'
-     */
-    rtb_crc_calc = (process_B.WhileIterator == process_P.Constant_Value_b);
-
-    /* DiscreteIntegrator: '<S11>/Accumulator' */
-    if (rtb_crc_calc || (process_DW.Accumulator_PrevResetState != 0)) {
-      process_DW.Accumulator_DSTATE_n = process_P.Accumulator_IC_c;
-    }
-
-    /* DiscreteIntegrator: '<S11>/Accumulator' */
-    process_B.Accumulator_f = process_DW.Accumulator_DSTATE_n;
-
-    /* Delay: '<S11>/Resettable Delay' */
-    if ((!rtb_crc_calc) && (process_PrevZCX.ResettableDelay_Reset_ZCE !=
-                            ZERO_ZCSIG)) {
-      for (i = 0; i < 144; i++) {
-        process_DW.ResettableDelay_DSTATE[i] =
-          process_P.ResettableDelay_InitialCondition;
-      }
-    }
-
-    process_PrevZCX.ResettableDelay_Reset_ZCE = rtb_crc_calc;
-
-    /* MATLAB Function: '<S11>/MATLAB Function' incorporates:
-     *  Delay: '<S11>/Resettable Delay'
-     */
-    memcpy(&process_B.y[0], &process_DW.ResettableDelay_DSTATE[0], 144U * sizeof
-           (uint8_T));
-    process_B.y[process_B.WhileIterator - 1] = process_B.Accumulator_f;
-
-    /* Update for UnitDelay: '<S10>/Unit Delay' */
-    process_DW.UnitDelay_DSTATE = state;
-
-    /* Update for UnitDelay: '<S10>/Unit Delay1' */
-    process_DW.UnitDelay1_DSTATE[0] = process_B.data_vector[0];
-    process_DW.UnitDelay1_DSTATE[1] = process_B.data_vector[1];
-    process_DW.UnitDelay1_DSTATE[2] = process_B.data_vector[2];
-    process_DW.UnitDelay1_DSTATE[3] = process_B.data_vector[3];
-
-    /* Update for UnitDelay: '<S10>/Unit Delay2' */
-    process_DW.UnitDelay2_DSTATE_b = data_vector_index;
-
-    /* Update for UnitDelay: '<S10>/Unit Delay3' */
-    process_DW.UnitDelay3_DSTATE = packet_size;
-
-    /* Update for UnitDelay: '<S10>/Unit Delay4' */
-    process_DW.UnitDelay4_DSTATE = msg_id;
-
-    /* Update for UnitDelay: '<S10>/Unit Delay5' */
-    process_DW.UnitDelay5_DSTATE = process_B.new_data;
-
-    /* Update for UnitDelay: '<S10>/Unit Delay6' */
-    process_DW.UnitDelay6_DSTATE = process_B.sum_eight_bit;
-
-    /* Update for DiscreteIntegrator: '<S6>/Accumulator' incorporates:
-     *  Constant: '<S6>/Constant16'
-     *  Logic: '<S6>/Logical Operator'
-     */
-    process_DW.Accumulator_DSTATE_h = (uint8_T)((uint32_T)(process_B.new_data &&
-      process_P.Constant16_Value) + process_DW.Accumulator_DSTATE_h);
-
-    /* Update for DiscreteIntegrator: '<S7>/Accumulator' incorporates:
-     *  Logic: '<S7>/Logical Operator'
-     */
-    process_DW.Accumulator_DSTATE_j = (uint16_T)((uint32_T)(process_B.new_data &&
-      loopCond) + process_DW.Accumulator_DSTATE_j);
-
-    /* Update for DiscreteIntegrator: '<S8>/Accumulator' incorporates:
-     *  Logic: '<S8>/Logical Operator'
-     */
-    process_DW.Accumulator_DSTATE_o = (uint16_T)((uint32_T)(process_B.new_data &&
-      rtb_RelationalOperator_p) + process_DW.Accumulator_DSTATE_o);
-
-    /* Update for DiscreteIntegrator: '<S11>/Accumulator' incorporates:
-     *  DataTypeConversion: '<S11>/Data Type Conversion'
-     */
-    process_DW.Accumulator_DSTATE_n = (uint8_T)((uint32_T)
-      process_DW.Accumulator_DSTATE_n + process_B.available);
-    process_DW.Accumulator_PrevResetState = (int8_T)rtb_crc_calc;
-
-    /* Update for Delay: '<S11>/Resettable Delay' */
-    memcpy(&process_DW.ResettableDelay_DSTATE[0], &process_B.y[0], 144U * sizeof
-           (uint8_T));
-    srUpdateBC(process_DW.message_rx_looper_SubsysRanBC);
-
-    /* Constant: '<S5>/Constant' */
-    loopCond = (process_P.Constant_Value_j != 0.0);
-    s5_iter++;
-  }
-
-  /* End of Outputs for SubSystem: '<S3>/message_rx_looper' */
   /* DataTypeConversion: '<S1>/Data Type Conversion' incorporates:
    *  Constant: '<S1>/Constant'
    */
@@ -675,20 +334,337 @@ void process_output(void)
   /* DataTypeConversion: '<S1>/Data Type Conversion9' */
   process_B.DataTypeConversion9 = (uint8_T)(tmp < 0.0 ? (int32_T)(uint8_T)
     -(int8_T)(uint8_T)-tmp : (int32_T)(uint8_T)tmp);
+
+  /* S-Function (sldrttet): '<S2>/Execution Time' */
+  /* S-Function Block: <S2>/Execution Time */
+  {
+    RTBIO_DriverIO(INTERNALIO, (IODEVICE) RTBIOTOTALEXECUTIONTIME, IOREAD, 0, 0,
+                   &process_B.ExecutionTime, 0);
+  }
+
+  /* DiscreteIntegrator: '<S4>/Accumulator' incorporates:
+   *  Constant: '<S2>/Constant'
+   */
+  if (process_P.Constant_Value_n || (process_DW.Accumulator_PrevResetState != 0))
+  {
+    process_DW.Accumulator_DSTATE = process_P.Accumulator_IC;
+  }
+
+  /* DiscreteIntegrator: '<S4>/Accumulator' */
+  process_B.Accumulator = process_DW.Accumulator_DSTATE;
+
+  /* Product: '<S4>/Divide' incorporates:
+   *  Bias: '<S4>/Bias'
+   *  Product: '<S4>/Product'
+   *  Sum: '<S4>/Add'
+   *  UnitDelay: '<S4>/Unit Delay2'
+   */
+  process_B.Divide = ((process_B.Accumulator + process_P.Bias_Bias) *
+                      process_DW.UnitDelay2_DSTATE + process_B.ExecutionTime) /
+    process_B.Accumulator;
+
+  /* Outputs for Iterator SubSystem: '<S3>/message_rx_looper' incorporates:
+   *  WhileIterator: '<S5>/While Iterator'
+   */
+  s5_iter = 1U;
+
+  /* Constant: '<S3>/Constant18' */
+  loopCond = process_P.Constant18_Value_a;
+  while (loopCond && (s5_iter <= 144)) {
+    /* S-Function (sldrtpi): '<S10>/Packet Input2' */
+    /* S-Function Block: <S10>/Packet Input2 */
+    {
+      uint8_T indata[1U];
+      int status = RTBIO_DriverIO(0, STREAMINPUT, IOREAD, 1U,
+        &process_P.PacketInput2_PacketID, (double*) indata, NULL);
+      process_B.missed_ticks = 0;      /* Missed Ticks value is always zero */
+      process_B.error = (status>>1) & 0x1;/* Data Error port */
+      process_B.available = status & 0x1;/* Data Ready port */
+      if (status & 0x1) {
+        RTWin_ANYTYPEPTR indp;
+        indp.p_uint8_T = indata;
+        process_B.data = *indp.p_uint8_T++;
+      }
+    }
+
+    /* MATLAB Function: '<S11>/MATLAB Function' incorporates:
+     *  UnitDelay: '<S11>/Unit Delay'
+     *  UnitDelay: '<S11>/Unit Delay1'
+     *  UnitDelay: '<S11>/Unit Delay2'
+     *  UnitDelay: '<S11>/Unit Delay3'
+     *  UnitDelay: '<S11>/Unit Delay4'
+     *  UnitDelay: '<S11>/Unit Delay5'
+     *  UnitDelay: '<S11>/Unit Delay6'
+     */
+    loopCond = false;
+    state = process_DW.UnitDelay_DSTATE;
+    process_B.data_vector[0] = process_DW.UnitDelay1_DSTATE[0];
+    process_B.data_vector[1] = process_DW.UnitDelay1_DSTATE[1];
+    process_B.data_vector[2] = process_DW.UnitDelay1_DSTATE[2];
+    process_B.data_vector[3] = process_DW.UnitDelay1_DSTATE[3];
+    data_vector_index = process_DW.UnitDelay2_DSTATE_b;
+    packet_size = process_DW.UnitDelay3_DSTATE;
+    msg_id = process_DW.UnitDelay4_DSTATE;
+    process_B.new_data = process_DW.UnitDelay5_DSTATE;
+    switch (process_DW.UnitDelay_DSTATE) {
+     case 1U:
+      process_B.new_data = false;
+      msg_id = 0U;
+      process_B.data_vector[0] = 0U;
+      process_B.data_vector[1] = 0U;
+      process_B.data_vector[2] = 0U;
+      process_B.data_vector[3] = 0U;
+      data_vector_index = 1U;
+      packet_size = 0U;
+      if (process_B.available && (process_B.data == process_P.kGrdFrameStart)) {
+        i = (int32_T)(process_DW.UnitDelay_DSTATE + 1U);
+        if (process_DW.UnitDelay_DSTATE + 1U > 255U) {
+          i = 255;
+        }
+
+        state = (uint8_T)i;
+      }
+      break;
+
+     case 2U:
+      if (process_B.available) {
+        qY = (uint32_T)process_B.data - process_P.kGrdCmdSize;
+        if (qY > process_B.data) {
+          qY = 0U;
+        }
+
+        packet_size = (uint8_T)qY;
+        i = (int32_T)(process_DW.UnitDelay_DSTATE + 1U);
+        if (process_DW.UnitDelay_DSTATE + 1U > 255U) {
+          i = 255;
+        }
+
+        state = (uint8_T)i;
+      }
+      break;
+
+     case 3U:
+      if (process_B.available) {
+        msg_id = process_B.data;
+        i = (int32_T)(process_DW.UnitDelay_DSTATE + 1U);
+        if (process_DW.UnitDelay_DSTATE + 1U > 255U) {
+          i = 255;
+        }
+
+        state = (uint8_T)i;
+      }
+      break;
+
+     case 4U:
+      if (process_B.available) {
+        process_B.data_vector[process_DW.UnitDelay2_DSTATE_b - 1] =
+          process_B.data;
+        if (process_DW.UnitDelay2_DSTATE_b == process_DW.UnitDelay3_DSTATE) {
+          i = (int32_T)(process_DW.UnitDelay_DSTATE + 1U);
+          if (process_DW.UnitDelay_DSTATE + 1U > 255U) {
+            i = 255;
+          }
+
+          state = (uint8_T)i;
+          loopCond = true;
+        }
+
+        i = (int32_T)(process_DW.UnitDelay2_DSTATE_b + 1U);
+        if (process_DW.UnitDelay2_DSTATE_b + 1U > 255U) {
+          i = 255;
+        }
+
+        data_vector_index = (uint8_T)i;
+      }
+      break;
+
+     case 5U:
+      if (process_B.available && (process_DW.UnitDelay6_DSTATE == process_B.data))
+      {
+        process_B.new_data = true;
+        state = 1U;
+      }
+      break;
+    }
+
+    /* End of MATLAB Function: '<S11>/MATLAB Function' */
+
+    /* Outputs for Enabled and Triggered SubSystem: '<S8>/Triggered Subsystem' */
+    /* RelationalOperator: '<S8>/Relational Operator' incorporates:
+     *  Constant: '<S8>/Constant'
+     */
+    process_TriggeredSubsystem(msg_id == process_P.holder_msgID_0x1_u_p,
+      process_B.new_data, process_B.data_vector, &process_B.TriggeredSubsystem_d,
+      &process_DW.TriggeredSubsystem_d, &process_PrevZCX.TriggeredSubsystem_d);
+
+    /* End of Outputs for SubSystem: '<S8>/Triggered Subsystem' */
+
+    /* SignalConversion generated from: '<S5>/serial_rx_bus_Outport_2' */
+    process_B.data_n[0] = process_B.TriggeredSubsystem_d.rx[0];
+    process_B.data_n[1] = process_B.TriggeredSubsystem_d.rx[1];
+    process_B.data_n[2] = process_B.TriggeredSubsystem_d.rx[2];
+    process_B.data_n[3] = process_B.TriggeredSubsystem_d.rx[3];
+
+    /* Outputs for Enabled and Triggered SubSystem: '<S9>/Triggered Subsystem' */
+    /* RelationalOperator: '<S9>/Relational Operator' incorporates:
+     *  Constant: '<S9>/Constant'
+     */
+    process_TriggeredSubsystem(msg_id == process_P.holder_msgID_0x2_u_p,
+      process_B.new_data, process_B.data_vector, &process_B.TriggeredSubsystem_n,
+      &process_DW.TriggeredSubsystem_n, &process_PrevZCX.TriggeredSubsystem_n);
+
+    /* End of Outputs for SubSystem: '<S9>/Triggered Subsystem' */
+
+    /* SignalConversion generated from: '<S5>/serial_rx_bus_Outport_2' */
+    process_B.data_nm[0] = process_B.TriggeredSubsystem_n.rx[0];
+    process_B.data_nm[1] = process_B.TriggeredSubsystem_n.rx[1];
+    process_B.data_nm[2] = process_B.TriggeredSubsystem_n.rx[2];
+    process_B.data_nm[3] = process_B.TriggeredSubsystem_n.rx[3];
+
+    /* DiscreteIntegrator: '<S7>/Accumulator' */
+    process_B.Accumulator_i = process_DW.Accumulator_DSTATE_h;
+
+    /* Outputs for Enabled and Triggered SubSystem: '<S7>/Triggered Subsystem' incorporates:
+     *  EnablePort: '<S13>/Enable'
+     *  TriggerPort: '<S13>/Trigger'
+     */
+    /* Constant: '<S7>/Constant16' */
+    if (process_P.Constant16_Value && (process_B.new_data &&
+         (process_PrevZCX.TriggeredSubsystem_Trig_ZCE_m != POS_ZCSIG))) {
+      process_DW.TriggeredSubsystem_SubsysRanBC = 4;
+    }
+
+    process_PrevZCX.TriggeredSubsystem_Trig_ZCE_m = process_B.new_data;
+
+    /* End of Outputs for SubSystem: '<S7>/Triggered Subsystem' */
+    /* Outputs for Triggered SubSystem: '<S11>/crc' incorporates:
+     *  TriggerPort: '<S19>/Trigger'
+     */
+    if (loopCond && (process_PrevZCX.crc_Trig_ZCE != POS_ZCSIG)) {
+      /* Sum: '<S19>/Add1' incorporates:
+       *  Constant: '<S19>/Constant2'
+       *  Constant: '<S19>/Constant3'
+       *  Constant: '<S19>/Constant4'
+       */
+      rtb_Add1 = (uint8_T)((uint32_T)(uint8_T)((uint32_T)(uint8_T)((uint32_T)
+        process_P.kGrdFrameStartSize + process_P.kGrdCmdSize) +
+        process_P.kGrdCrcSize) + packet_size);
+
+      /* SignalConversion generated from: '<S20>/ SFunction ' incorporates:
+       *  Constant: '<S19>/Constant'
+       *  Constant: '<S19>/Constant1'
+       *  MATLAB Function: '<S19>/MATLAB Function1'
+       *  Sum: '<S19>/Add'
+       */
+      rtb_TmpSignalConversionAtSFunctionInport1[0] = process_P.kGrdFrameStart;
+      rtb_TmpSignalConversionAtSFunctionInport1[1] = (uint8_T)((uint32_T)
+        process_P.kGrdCmdSize + packet_size);
+      rtb_TmpSignalConversionAtSFunctionInport1[2] = msg_id;
+      rtb_TmpSignalConversionAtSFunctionInport1[3] = process_B.data_vector[0];
+      rtb_TmpSignalConversionAtSFunctionInport1[4] = process_B.data_vector[1];
+      rtb_TmpSignalConversionAtSFunctionInport1[5] = process_B.data_vector[2];
+      rtb_TmpSignalConversionAtSFunctionInport1[6] = process_B.data_vector[3];
+
+      /* MATLAB Function: '<S19>/MATLAB Function1' */
+      sum = 0U;
+      for (i = 0; i < rtb_Add1; i++) {
+        qY = (uint32_T)sum + rtb_TmpSignalConversionAtSFunctionInport1[i];
+        if (qY > 65535U) {
+          qY = 65535U;
+        }
+
+        sum = (uint16_T)qY;
+      }
+
+      if (sum > 255) {
+        sum = (uint16_T)((int32_T)((uint32_T)sum >> 8) + (sum & 255));
+      }
+
+      if (sum > 255) {
+        sum = 255U;
+      }
+
+      process_B.sum_eight_bit = (uint8_T)sum;
+      process_DW.crc_SubsysRanBC = 4;
+    }
+
+    process_PrevZCX.crc_Trig_ZCE = loopCond;
+
+    /* End of Outputs for SubSystem: '<S11>/crc' */
+    /* RelationalOperator: '<S12>/Relational Operator' incorporates:
+     *  Constant: '<S12>/Constant'
+     */
+    loopCond = (s5_iter == process_P.message_poll_num);
+
+    /* DiscreteIntegrator: '<S12>/Accumulator' */
+    if (loopCond || (process_DW.Accumulator_PrevResetState_n != 0)) {
+      process_DW.Accumulator_DSTATE_n = process_P.Accumulator_IC_c;
+    }
+
+    /* DiscreteIntegrator: '<S12>/Accumulator' */
+    process_B.Accumulator_f = process_DW.Accumulator_DSTATE_n;
+
+    /* MATLAB Function: '<S12>/MATLAB Function' incorporates:
+     *  Delay: '<S12>/Resettable Delay'
+     */
+    memcpy(&process_B.y[0], &process_DW.ResettableDelay_DSTATE[0], 144U * sizeof
+           (uint8_T));
+    process_B.y[s5_iter - 1] = process_B.Accumulator_f;
+
+    /* Update for UnitDelay: '<S11>/Unit Delay' */
+    process_DW.UnitDelay_DSTATE = state;
+
+    /* Update for UnitDelay: '<S11>/Unit Delay1' */
+    process_DW.UnitDelay1_DSTATE[0] = process_B.data_vector[0];
+    process_DW.UnitDelay1_DSTATE[1] = process_B.data_vector[1];
+    process_DW.UnitDelay1_DSTATE[2] = process_B.data_vector[2];
+    process_DW.UnitDelay1_DSTATE[3] = process_B.data_vector[3];
+
+    /* Update for UnitDelay: '<S11>/Unit Delay2' */
+    process_DW.UnitDelay2_DSTATE_b = data_vector_index;
+
+    /* Update for UnitDelay: '<S11>/Unit Delay3' */
+    process_DW.UnitDelay3_DSTATE = packet_size;
+
+    /* Update for UnitDelay: '<S11>/Unit Delay4' */
+    process_DW.UnitDelay4_DSTATE = msg_id;
+
+    /* Update for UnitDelay: '<S11>/Unit Delay5' */
+    process_DW.UnitDelay5_DSTATE = process_B.new_data;
+
+    /* Update for UnitDelay: '<S11>/Unit Delay6' */
+    process_DW.UnitDelay6_DSTATE = process_B.sum_eight_bit;
+
+    /* Update for DiscreteIntegrator: '<S7>/Accumulator' incorporates:
+     *  Constant: '<S7>/Constant16'
+     *  Logic: '<S7>/Logical Operator'
+     */
+    process_DW.Accumulator_DSTATE_h = (uint16_T)((uint32_T)(process_B.new_data &&
+      process_P.Constant16_Value) + process_DW.Accumulator_DSTATE_h);
+
+    /* Update for DiscreteIntegrator: '<S12>/Accumulator' incorporates:
+     *  DataTypeConversion: '<S12>/Data Type Conversion'
+     */
+    process_DW.Accumulator_DSTATE_n = (uint8_T)((uint32_T)
+      process_DW.Accumulator_DSTATE_n + process_B.available);
+    process_DW.Accumulator_PrevResetState_n = (int8_T)loopCond;
+
+    /* Update for Delay: '<S12>/Resettable Delay' */
+    memcpy(&process_DW.ResettableDelay_DSTATE[0], &process_B.y[0], 144U * sizeof
+           (uint8_T));
+    srUpdateBC(process_DW.message_rx_looper_SubsysRanBC);
+
+    /* Constant: '<S5>/Constant' */
+    loopCond = (process_P.Constant_Value != 0.0);
+    s5_iter++;
+  }
+
+  /* End of Outputs for SubSystem: '<S3>/message_rx_looper' */
 }
 
 /* Model update function */
 void process_update(void)
 {
-  /* Update for UnitDelay: '<S2>/Unit Delay2' */
-  process_DW.UnitDelay2_DSTATE = process_B.Divide;
-
-  /* Update for DiscreteIntegrator: '<S2>/Accumulator' incorporates:
-   *  Constant: '<S2>/Constant18'
-   */
-  process_DW.Accumulator_DSTATE += process_P.Accumulator_gainval *
-    process_P.Constant18_Value;
-
   /* Update for S-Function (sldrtpo): '<S1>/Packet Output' */
 
   /* S-Function Block: <S1>/Packet Output */
@@ -783,6 +759,17 @@ void process_update(void)
                    &process_P.PacketOutput1_PacketID, (double*) outdata, NULL);
   }
 
+  /* Update for UnitDelay: '<S4>/Unit Delay2' */
+  process_DW.UnitDelay2_DSTATE = process_B.Divide;
+
+  /* Update for DiscreteIntegrator: '<S4>/Accumulator' incorporates:
+   *  Constant: '<S2>/Constant'
+   *  Constant: '<S4>/Constant18'
+   */
+  process_DW.Accumulator_DSTATE += process_P.Accumulator_gainval *
+    process_P.Constant18_Value;
+  process_DW.Accumulator_PrevResetState = (int8_T)process_P.Constant_Value_n;
+
   /* Update absolute time for base rate */
   /* The "clockTick0" counts the number of times the code of this task has
    * been executed. The absolute time is the multiplication of "clockTick0"
@@ -813,95 +800,78 @@ void process_initialize(void)
 
   /* S-Function Block: <S1>/Packet Output1 */
   /* no initial value should be set */
+  process_PrevZCX.TriggeredSubsystem_Trig_ZCE_m = POS_ZCSIG;
   process_PrevZCX.crc_Trig_ZCE = POS_ZCSIG;
-  process_PrevZCX.ResettableDelay_Reset_ZCE = ZERO_ZCSIG;
-  process_PrevZCX.TriggeredSubsystem_h.TriggeredSubsystem_Trig_ZCE = POS_ZCSIG;
-  process_PrevZCX.TriggeredSubsystem_i.TriggeredSubsystem_Trig_ZCE = POS_ZCSIG;
-  process_PrevZCX.TriggeredSubsystem.TriggeredSubsystem_Trig_ZCE = POS_ZCSIG;
+  process_PrevZCX.TriggeredSubsystem_n.TriggeredSubsystem_Trig_ZCE = POS_ZCSIG;
+  process_PrevZCX.TriggeredSubsystem_d.TriggeredSubsystem_Trig_ZCE = POS_ZCSIG;
 
   {
     int32_T i;
 
-    /* InitializeConditions for UnitDelay: '<S2>/Unit Delay2' */
+    /* InitializeConditions for UnitDelay: '<S4>/Unit Delay2' */
     process_DW.UnitDelay2_DSTATE = process_P.UnitDelay2_InitialCondition;
 
-    /* InitializeConditions for DiscreteIntegrator: '<S2>/Accumulator' */
+    /* InitializeConditions for DiscreteIntegrator: '<S4>/Accumulator' */
     process_DW.Accumulator_DSTATE = process_P.Accumulator_IC;
+    process_DW.Accumulator_PrevResetState = 0;
 
-    /* SystemInitialize for Iterator SubSystem: '<S3>/message_rx_looper' incorporates:
-     *  WhileIterator: '<S5>/While Iterator'
-     */
-    /* InitializeConditions for UnitDelay: '<S10>/Unit Delay' */
+    /* SystemInitialize for Iterator SubSystem: '<S3>/message_rx_looper' */
+    /* InitializeConditions for UnitDelay: '<S11>/Unit Delay' */
     process_DW.UnitDelay_DSTATE = process_P.UnitDelay_InitialCondition;
 
-    /* InitializeConditions for UnitDelay: '<S10>/Unit Delay1' */
+    /* InitializeConditions for UnitDelay: '<S11>/Unit Delay1' */
     process_DW.UnitDelay1_DSTATE[0] = process_P.UnitDelay1_InitialCondition;
     process_DW.UnitDelay1_DSTATE[1] = process_P.UnitDelay1_InitialCondition;
     process_DW.UnitDelay1_DSTATE[2] = process_P.UnitDelay1_InitialCondition;
     process_DW.UnitDelay1_DSTATE[3] = process_P.UnitDelay1_InitialCondition;
 
-    /* InitializeConditions for UnitDelay: '<S10>/Unit Delay2' */
+    /* InitializeConditions for UnitDelay: '<S11>/Unit Delay2' */
     process_DW.UnitDelay2_DSTATE_b = process_P.UnitDelay2_InitialCondition_m;
 
-    /* InitializeConditions for UnitDelay: '<S10>/Unit Delay3' */
+    /* InitializeConditions for UnitDelay: '<S11>/Unit Delay3' */
     process_DW.UnitDelay3_DSTATE = process_P.UnitDelay3_InitialCondition;
 
-    /* InitializeConditions for UnitDelay: '<S10>/Unit Delay4' */
+    /* InitializeConditions for UnitDelay: '<S11>/Unit Delay4' */
     process_DW.UnitDelay4_DSTATE = process_P.UnitDelay4_InitialCondition;
 
-    /* InitializeConditions for UnitDelay: '<S10>/Unit Delay5' */
+    /* InitializeConditions for UnitDelay: '<S11>/Unit Delay5' */
     process_DW.UnitDelay5_DSTATE = process_P.UnitDelay5_InitialCondition;
 
-    /* InitializeConditions for UnitDelay: '<S10>/Unit Delay6' */
+    /* InitializeConditions for UnitDelay: '<S11>/Unit Delay6' */
     process_DW.UnitDelay6_DSTATE = process_P.UnitDelay6_InitialCondition;
 
-    /* InitializeConditions for DiscreteIntegrator: '<S6>/Accumulator' */
+    /* InitializeConditions for DiscreteIntegrator: '<S7>/Accumulator' */
     process_DW.Accumulator_DSTATE_h = process_P.Accumulator_IC_j;
 
-    /* InitializeConditions for DiscreteIntegrator: '<S7>/Accumulator' */
-    process_DW.Accumulator_DSTATE_j = process_P.Accumulator_IC_g;
-
-    /* InitializeConditions for DiscreteIntegrator: '<S8>/Accumulator' */
-    process_DW.Accumulator_DSTATE_o = process_P.Accumulator_IC_a;
-
-    /* InitializeConditions for DiscreteIntegrator: '<S11>/Accumulator' */
+    /* InitializeConditions for DiscreteIntegrator: '<S12>/Accumulator' */
     process_DW.Accumulator_DSTATE_n = process_P.Accumulator_IC_c;
-    process_DW.Accumulator_PrevResetState = 0;
+    process_DW.Accumulator_PrevResetState_n = 0;
 
-    /* InitializeConditions for Delay: '<S11>/Resettable Delay' */
+    /* InitializeConditions for Delay: '<S12>/Resettable Delay' */
     for (i = 0; i < 144; i++) {
       process_DW.ResettableDelay_DSTATE[i] =
         process_P.ResettableDelay_InitialCondition;
     }
 
-    /* End of InitializeConditions for Delay: '<S11>/Resettable Delay' */
-
-    /* SystemInitialize for Enabled and Triggered SubSystem: '<S7>/Triggered Subsystem' */
-    process_TriggeredSubsystem_Init(&process_B.TriggeredSubsystem_i,
-      &process_P.TriggeredSubsystem_i);
-
-    /* End of SystemInitialize for SubSystem: '<S7>/Triggered Subsystem' */
+    /* End of InitializeConditions for Delay: '<S12>/Resettable Delay' */
 
     /* SystemInitialize for Enabled and Triggered SubSystem: '<S8>/Triggered Subsystem' */
-    process_TriggeredSubsystem_Init(&process_B.TriggeredSubsystem_h,
-      &process_P.TriggeredSubsystem_h);
+    process_TriggeredSubsystem_Init(&process_B.TriggeredSubsystem_d,
+      &process_P.TriggeredSubsystem_d);
 
     /* End of SystemInitialize for SubSystem: '<S8>/Triggered Subsystem' */
 
-    /* SystemInitialize for Enabled and Triggered SubSystem: '<S6>/Triggered Subsystem' */
-    process_TriggeredSubsystem_Init(&process_B.TriggeredSubsystem,
-      &process_P.TriggeredSubsystem);
+    /* SystemInitialize for Enabled and Triggered SubSystem: '<S9>/Triggered Subsystem' */
+    process_TriggeredSubsystem_Init(&process_B.TriggeredSubsystem_n,
+      &process_P.TriggeredSubsystem_n);
 
-    /* End of SystemInitialize for SubSystem: '<S6>/Triggered Subsystem' */
+    /* End of SystemInitialize for SubSystem: '<S9>/Triggered Subsystem' */
 
-    /* SystemInitialize for Triggered SubSystem: '<S10>/crc' */
-    /* SystemInitialize for Outport: '<S16>/sum_eight_bit' */
+    /* SystemInitialize for Triggered SubSystem: '<S11>/crc' */
+    /* SystemInitialize for Outport: '<S19>/sum_eight_bit' */
     process_B.sum_eight_bit = process_P.sum_eight_bit_Y0;
 
-    /* End of SystemInitialize for SubSystem: '<S10>/crc' */
-
-    /* SystemInitialize for Outport: '<S5>/iterator' */
-    process_B.WhileIterator = process_P.iterator_Y0;
+    /* End of SystemInitialize for SubSystem: '<S11>/crc' */
 
     /* SystemInitialize for Outport: '<S5>/y' */
     for (i = 0; i < 144; i++) {
@@ -909,6 +879,51 @@ void process_initialize(void)
     }
 
     /* End of SystemInitialize for Outport: '<S5>/y' */
+
+    /* SystemInitialize for SignalConversion generated from: '<S5>/serial_rx_bus_Outport_2' incorporates:
+     *  Outport: '<S5>/serial_rx_bus_Outport_2'
+     */
+    process_B.data_n[0] = process_P.serial_rx_bus_Outport_2_Y0.msgID_0x00.data[0];
+
+    /* SystemInitialize for SignalConversion generated from: '<S5>/serial_rx_bus_Outport_2' incorporates:
+     *  Outport: '<S5>/serial_rx_bus_Outport_2'
+     */
+    process_B.data_nm[0] = process_P.serial_rx_bus_Outport_2_Y0.msgID_0x01.data
+      [0];
+
+    /* SystemInitialize for SignalConversion generated from: '<S5>/serial_rx_bus_Outport_2' incorporates:
+     *  Outport: '<S5>/serial_rx_bus_Outport_2'
+     */
+    process_B.data_n[1] = process_P.serial_rx_bus_Outport_2_Y0.msgID_0x00.data[1];
+
+    /* SystemInitialize for SignalConversion generated from: '<S5>/serial_rx_bus_Outport_2' incorporates:
+     *  Outport: '<S5>/serial_rx_bus_Outport_2'
+     */
+    process_B.data_nm[1] = process_P.serial_rx_bus_Outport_2_Y0.msgID_0x01.data
+      [1];
+
+    /* SystemInitialize for SignalConversion generated from: '<S5>/serial_rx_bus_Outport_2' incorporates:
+     *  Outport: '<S5>/serial_rx_bus_Outport_2'
+     */
+    process_B.data_n[2] = process_P.serial_rx_bus_Outport_2_Y0.msgID_0x00.data[2];
+
+    /* SystemInitialize for SignalConversion generated from: '<S5>/serial_rx_bus_Outport_2' incorporates:
+     *  Outport: '<S5>/serial_rx_bus_Outport_2'
+     */
+    process_B.data_nm[2] = process_P.serial_rx_bus_Outport_2_Y0.msgID_0x01.data
+      [2];
+
+    /* SystemInitialize for SignalConversion generated from: '<S5>/serial_rx_bus_Outport_2' incorporates:
+     *  Outport: '<S5>/serial_rx_bus_Outport_2'
+     */
+    process_B.data_n[3] = process_P.serial_rx_bus_Outport_2_Y0.msgID_0x00.data[3];
+
+    /* SystemInitialize for SignalConversion generated from: '<S5>/serial_rx_bus_Outport_2' incorporates:
+     *  Outport: '<S5>/serial_rx_bus_Outport_2'
+     */
+    process_B.data_nm[3] = process_P.serial_rx_bus_Outport_2_Y0.msgID_0x01.data
+      [3];
+
     /* End of SystemInitialize for SubSystem: '<S3>/message_rx_looper' */
   }
 }
@@ -1008,10 +1023,10 @@ RT_MODEL_process_T *process(void)
   process_M->Timing.stepSize0 = 0.01;
 
   /* External mode info */
-  process_M->Sizes.checksums[0] = (1755634588U);
-  process_M->Sizes.checksums[1] = (3746122080U);
-  process_M->Sizes.checksums[2] = (3044464527U);
-  process_M->Sizes.checksums[3] = (1682594708U);
+  process_M->Sizes.checksums[0] = (1547289812U);
+  process_M->Sizes.checksums[1] = (4132168702U);
+  process_M->Sizes.checksums[2] = (1735594953U);
+  process_M->Sizes.checksums[3] = (979310510U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
@@ -1020,12 +1035,11 @@ RT_MODEL_process_T *process(void)
     process_M->extModeInfo = (&rt_ExtModeInfo);
     rteiSetSubSystemActiveVectorAddresses(&rt_ExtModeInfo, systemRan);
     systemRan[0] = &rtAlwaysEnabled;
-    systemRan[1] = (sysRanDType *)
-      &process_DW.TriggeredSubsystem.TriggeredSubsystem_SubsysRanBC;
+    systemRan[1] = (sysRanDType *)&process_DW.TriggeredSubsystem_SubsysRanBC;
     systemRan[2] = (sysRanDType *)
-      &process_DW.TriggeredSubsystem_i.TriggeredSubsystem_SubsysRanBC;
+      &process_DW.TriggeredSubsystem_d.TriggeredSubsystem_SubsysRanBC;
     systemRan[3] = (sysRanDType *)
-      &process_DW.TriggeredSubsystem_h.TriggeredSubsystem_SubsysRanBC;
+      &process_DW.TriggeredSubsystem_n.TriggeredSubsystem_SubsysRanBC;
     systemRan[4] = (sysRanDType *)&process_DW.message_rx_looper_SubsysRanBC;
     systemRan[5] = (sysRanDType *)&process_DW.crc_SubsysRanBC;
     systemRan[6] = (sysRanDType *)&process_DW.crc_SubsysRanBC;
@@ -1061,7 +1075,7 @@ RT_MODEL_process_T *process(void)
     (void) memset((char_T *) &dtInfo, 0,
                   sizeof(dtInfo));
     process_M->SpecialInfo.mappingInfo = (&dtInfo);
-    dtInfo.numDataTypes = 15;
+    dtInfo.numDataTypes = 17;
     dtInfo.dataTypeSizes = &rtDataTypeSizes[0];
     dtInfo.dataTypeNames = &rtDataTypeNames[0];
 
@@ -1078,9 +1092,9 @@ RT_MODEL_process_T *process(void)
   process_M->Sizes.numU = (0);         /* Number of model inputs */
   process_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   process_M->Sizes.numSampTimes = (1); /* Number of sample times */
-  process_M->Sizes.numBlocks = (116);  /* Number of blocks */
-  process_M->Sizes.numBlockIO = (42);  /* Number of block outputs */
-  process_M->Sizes.numBlockPrms = (59);/* Sum of parameter "widths" */
+  process_M->Sizes.numBlocks = (104);  /* Number of blocks */
+  process_M->Sizes.numBlockIO = (38);  /* Number of block outputs */
+  process_M->Sizes.numBlockPrms = (58);/* Sum of parameter "widths" */
   return process_M;
 }
 

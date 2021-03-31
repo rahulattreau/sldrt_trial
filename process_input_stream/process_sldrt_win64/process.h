@@ -3,9 +3,9 @@
  *
  * Code generation for model "process".
  *
- * Model version              : 2.406
+ * Model version              : 2.467
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Tue Mar 30 21:41:59 2021
+ * C source code generated on : Tue Mar 30 22:32:46 2021
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -847,29 +847,28 @@
 /* Definition for use in the target main file */
 #define process_rtModel                RT_MODEL_process_T
 
-/* Block signals for system '<S6>/Triggered Subsystem' */
+/* Block signals for system '<S8>/Triggered Subsystem' */
 typedef struct {
-  uint8_T rx[4];                       /* '<S12>/rx' */
+  uint8_T rx[4];                       /* '<S14>/rx' */
 } B_TriggeredSubsystem_process_T;
 
-/* Block states (default storage) for system '<S6>/Triggered Subsystem' */
+/* Block states (default storage) for system '<S8>/Triggered Subsystem' */
 typedef struct {
-  int8_T TriggeredSubsystem_SubsysRanBC;/* '<S6>/Triggered Subsystem' */
+  int8_T TriggeredSubsystem_SubsysRanBC;/* '<S8>/Triggered Subsystem' */
 } DW_TriggeredSubsystem_process_T;
 
-/* Zero-crossing (trigger) state for system '<S6>/Triggered Subsystem' */
+/* Zero-crossing (trigger) state for system '<S8>/Triggered Subsystem' */
 typedef struct {
-  ZCSigState TriggeredSubsystem_Trig_ZCE;/* '<S6>/Triggered Subsystem' */
+  ZCSigState TriggeredSubsystem_Trig_ZCE;/* '<S8>/Triggered Subsystem' */
 } ZCE_TriggeredSubsystem_process_T;
 
 /* Block signals (default storage) */
 typedef struct {
-  real_T ExecutionTime;                /* '<Root>/Execution Time' */
-  real_T Accumulator;                  /* '<S2>/Accumulator' */
-  real_T Divide;                       /* '<S2>/Divide' */
-  int32_T missed_ticks;                /* '<S9>/Packet Input2' */
-  uint16_T Accumulator_c;              /* '<S7>/Accumulator' */
-  uint16_T Accumulator_a;              /* '<S8>/Accumulator' */
+  real_T ExecutionTime;                /* '<S2>/Execution Time' */
+  real_T Accumulator;                  /* '<S4>/Accumulator' */
+  real_T Divide;                       /* '<S4>/Divide' */
+  int32_T missed_ticks;                /* '<S10>/Packet Input2' */
+  uint16_T Accumulator_i;              /* '<S7>/Accumulator' */
   uint8_T DataTypeConversion;          /* '<S1>/Data Type Conversion' */
   uint8_T DataTypeConversion1;         /* '<S1>/Data Type Conversion1' */
   uint8_T DataTypeConversion2;         /* '<S1>/Data Type Conversion2' */
@@ -884,171 +883,120 @@ typedef struct {
   uint8_T DataTypeConversion7;         /* '<S1>/Data Type Conversion7' */
   uint8_T DataTypeConversion8;         /* '<S1>/Data Type Conversion8' */
   uint8_T DataTypeConversion9;         /* '<S1>/Data Type Conversion9' */
-  uint8_T WhileIterator;               /* '<S5>/While Iterator' */
-  uint8_T data;                        /* '<S9>/Packet Input2' */
-  uint8_T Accumulator_i;               /* '<S6>/Accumulator' */
-  uint8_T Accumulator_f;               /* '<S11>/Accumulator' */
-  uint8_T y[144];                      /* '<S11>/MATLAB Function' */
-  uint8_T sum_eight_bit;               /* '<S16>/MATLAB Function1' */
-  uint8_T data_vector[4];              /* '<S10>/MATLAB Function' */
-  boolean_T available;                 /* '<S9>/Packet Input2' */
-  boolean_T error;                     /* '<S9>/Packet Input2' */
-  boolean_T new_data;                  /* '<S10>/MATLAB Function' */
-  B_TriggeredSubsystem_process_T TriggeredSubsystem_h;/* '<S8>/Triggered Subsystem' */
-  B_TriggeredSubsystem_process_T TriggeredSubsystem_i;/* '<S7>/Triggered Subsystem' */
-  B_TriggeredSubsystem_process_T TriggeredSubsystem;/* '<S6>/Triggered Subsystem' */
+  uint8_T data;                        /* '<S10>/Packet Input2' */
+  uint8_T data_n[4];
+  uint8_T data_nm[4];
+  uint8_T Accumulator_f;               /* '<S12>/Accumulator' */
+  uint8_T y[144];                      /* '<S12>/MATLAB Function' */
+  uint8_T sum_eight_bit;               /* '<S19>/MATLAB Function1' */
+  uint8_T data_vector[4];              /* '<S11>/MATLAB Function' */
+  boolean_T available;                 /* '<S10>/Packet Input2' */
+  boolean_T error;                     /* '<S10>/Packet Input2' */
+  boolean_T new_data;                  /* '<S11>/MATLAB Function' */
+  B_TriggeredSubsystem_process_T TriggeredSubsystem_n;/* '<S9>/Triggered Subsystem' */
+  B_TriggeredSubsystem_process_T TriggeredSubsystem_d;/* '<S8>/Triggered Subsystem' */
 } B_process_T;
 
 /* Block states (default storage) for system '<Root>' */
 typedef struct {
-  real_T UnitDelay2_DSTATE;            /* '<S2>/Unit Delay2' */
-  real_T Accumulator_DSTATE;           /* '<S2>/Accumulator' */
-  struct {
-    void *LoggedData;
-  } Scope26_PWORK;                     /* '<Root>/Scope26' */
-
-  struct {
-    void *LoggedData;
-  } Scope27_PWORK;                     /* '<S2>/Scope27' */
-
-  struct {
-    void *LoggedData;
-  } Scope28_PWORK;                     /* '<S2>/Scope28' */
-
-  struct {
-    void *LoggedData;
-  } Scope25_PWORK;                     /* '<Root>/Scope25' */
-
+  real_T UnitDelay2_DSTATE;            /* '<S4>/Unit Delay2' */
+  real_T Accumulator_DSTATE;           /* '<S4>/Accumulator' */
   void *PacketOutput_PWORK[2];         /* '<S1>/Packet Output' */
   void *PacketOutput1_PWORK[2];        /* '<S1>/Packet Output1' */
-  void *PacketInput2_PWORK;            /* '<S9>/Packet Input2' */
   struct {
-    void *LoggedData;
-  } Scope1_PWORK;                      /* '<S5>/Scope1' */
+    void *LoggedData[2];
+  } Scope_PWORK;                       /* '<S2>/Scope' */
 
   struct {
     void *LoggedData;
-  } Scope10_PWORK;                     /* '<S5>/Scope10' */
+  } Scope1_PWORK;                      /* '<S2>/Scope1' */
 
   struct {
     void *LoggedData;
-  } Scope11_PWORK;                     /* '<S5>/Scope11' */
+  } Scope1_PWORK_k;                    /* '<S3>/Scope1' */
 
   struct {
     void *LoggedData;
-  } Scope12_PWORK;                     /* '<S5>/Scope12' */
+  } Scope10_PWORK;                     /* '<S3>/Scope10' */
 
   struct {
     void *LoggedData;
-  } Scope13_PWORK;                     /* '<S5>/Scope13' */
+  } Scope11_PWORK;                     /* '<S3>/Scope11' */
 
   struct {
     void *LoggedData;
-  } Scope14_PWORK;                     /* '<S5>/Scope14' */
+  } Scope12_PWORK;                     /* '<S3>/Scope12' */
 
   struct {
     void *LoggedData;
-  } Scope15_PWORK;                     /* '<S5>/Scope15' */
+  } Scope2_PWORK;                      /* '<S3>/Scope2' */
 
   struct {
     void *LoggedData;
-  } Scope16_PWORK;                     /* '<S5>/Scope16' */
+  } Scope3_PWORK;                      /* '<S3>/Scope3' */
 
   struct {
     void *LoggedData;
-  } Scope2_PWORK;                      /* '<S5>/Scope2' */
+  } Scope4_PWORK;                      /* '<S3>/Scope4' */
 
   struct {
     void *LoggedData;
-  } Scope3_PWORK;                      /* '<S5>/Scope3' */
+  } Scope9_PWORK;                      /* '<S3>/Scope9' */
+
+  void *PacketInput2_PWORK;            /* '<S10>/Packet Input2' */
+  struct {
+    void *LoggedData;
+  } Scope_PWORK_g;                     /* '<S7>/Scope' */
 
   struct {
     void *LoggedData;
-  } Scope4_PWORK;                      /* '<S5>/Scope4' */
+  } Scope_PWORK_m;                     /* '<S10>/Scope' */
 
   struct {
     void *LoggedData;
-  } Scope5_PWORK;                      /* '<S5>/Scope5' */
+  } Scope1_PWORK_g;                    /* '<S10>/Scope1' */
 
   struct {
     void *LoggedData;
-  } Scope6_PWORK;                      /* '<S5>/Scope6' */
+  } Scope2_PWORK_f;                    /* '<S10>/Scope2' */
 
   struct {
     void *LoggedData;
-  } Scope7_PWORK;                      /* '<S5>/Scope7' */
+  } Scope3_PWORK_n;                    /* '<S10>/Scope3' */
 
   struct {
     void *LoggedData;
-  } Scope8_PWORK;                      /* '<S5>/Scope8' */
+  } Scope1_PWORK_m;                    /* '<S11>/Scope1' */
 
   struct {
     void *LoggedData;
-  } Scope9_PWORK;                      /* '<S5>/Scope9' */
+  } Scope_PWORK_mw;                    /* '<S12>/Scope' */
 
-  struct {
-    void *LoggedData;
-  } Scope_PWORK;                       /* '<S6>/Scope' */
-
-  struct {
-    void *LoggedData;
-  } Scope_PWORK_n;                     /* '<S7>/Scope' */
-
-  struct {
-    void *LoggedData;
-  } Scope_PWORK_e;                     /* '<S8>/Scope' */
-
-  struct {
-    void *LoggedData;
-  } Scope_PWORK_m;                     /* '<S9>/Scope' */
-
-  struct {
-    void *LoggedData;
-  } Scope1_PWORK_g;                    /* '<S9>/Scope1' */
-
-  struct {
-    void *LoggedData;
-  } Scope2_PWORK_f;                    /* '<S9>/Scope2' */
-
-  struct {
-    void *LoggedData;
-  } Scope3_PWORK_n;                    /* '<S9>/Scope3' */
-
-  struct {
-    void *LoggedData;
-  } Scope1_PWORK_m;                    /* '<S10>/Scope1' */
-
-  struct {
-    void *LoggedData;
-  } Scope_PWORK_mw;                    /* '<S11>/Scope' */
-
-  uint16_T Accumulator_DSTATE_j;       /* '<S7>/Accumulator' */
-  uint16_T Accumulator_DSTATE_o;       /* '<S8>/Accumulator' */
-  uint8_T UnitDelay_DSTATE;            /* '<S10>/Unit Delay' */
-  uint8_T UnitDelay1_DSTATE[4];        /* '<S10>/Unit Delay1' */
-  uint8_T UnitDelay2_DSTATE_b;         /* '<S10>/Unit Delay2' */
-  uint8_T UnitDelay3_DSTATE;           /* '<S10>/Unit Delay3' */
-  uint8_T UnitDelay4_DSTATE;           /* '<S10>/Unit Delay4' */
-  uint8_T UnitDelay6_DSTATE;           /* '<S10>/Unit Delay6' */
-  uint8_T Accumulator_DSTATE_h;        /* '<S6>/Accumulator' */
-  uint8_T Accumulator_DSTATE_n;        /* '<S11>/Accumulator' */
-  uint8_T ResettableDelay_DSTATE[144]; /* '<S11>/Resettable Delay' */
-  boolean_T UnitDelay5_DSTATE;         /* '<S10>/Unit Delay5' */
+  uint16_T Accumulator_DSTATE_h;       /* '<S7>/Accumulator' */
+  uint8_T UnitDelay_DSTATE;            /* '<S11>/Unit Delay' */
+  uint8_T UnitDelay1_DSTATE[4];        /* '<S11>/Unit Delay1' */
+  uint8_T UnitDelay2_DSTATE_b;         /* '<S11>/Unit Delay2' */
+  uint8_T UnitDelay3_DSTATE;           /* '<S11>/Unit Delay3' */
+  uint8_T UnitDelay4_DSTATE;           /* '<S11>/Unit Delay4' */
+  uint8_T UnitDelay6_DSTATE;           /* '<S11>/Unit Delay6' */
+  uint8_T Accumulator_DSTATE_n;        /* '<S12>/Accumulator' */
+  uint8_T ResettableDelay_DSTATE[144]; /* '<S12>/Resettable Delay' */
+  boolean_T UnitDelay5_DSTATE;         /* '<S11>/Unit Delay5' */
+  int8_T Accumulator_PrevResetState;   /* '<S4>/Accumulator' */
   int8_T message_rx_looper_SubsysRanBC;/* '<S3>/message_rx_looper' */
-  int8_T Accumulator_PrevResetState;   /* '<S11>/Accumulator' */
-  int8_T crc_SubsysRanBC;              /* '<S10>/crc' */
-  DW_TriggeredSubsystem_process_T TriggeredSubsystem_h;/* '<S8>/Triggered Subsystem' */
-  DW_TriggeredSubsystem_process_T TriggeredSubsystem_i;/* '<S7>/Triggered Subsystem' */
-  DW_TriggeredSubsystem_process_T TriggeredSubsystem;/* '<S6>/Triggered Subsystem' */
+  int8_T Accumulator_PrevResetState_n; /* '<S12>/Accumulator' */
+  int8_T crc_SubsysRanBC;              /* '<S11>/crc' */
+  int8_T TriggeredSubsystem_SubsysRanBC;/* '<S7>/Triggered Subsystem' */
+  DW_TriggeredSubsystem_process_T TriggeredSubsystem_n;/* '<S9>/Triggered Subsystem' */
+  DW_TriggeredSubsystem_process_T TriggeredSubsystem_d;/* '<S8>/Triggered Subsystem' */
 } DW_process_T;
 
 /* Zero-crossing (trigger) state */
 typedef struct {
-  ZCSigState ResettableDelay_Reset_ZCE;/* '<S11>/Resettable Delay' */
-  ZCSigState crc_Trig_ZCE;             /* '<S10>/crc' */
-  ZCE_TriggeredSubsystem_process_T TriggeredSubsystem_h;/* '<S8>/Triggered Subsystem' */
-  ZCE_TriggeredSubsystem_process_T TriggeredSubsystem_i;/* '<S7>/Triggered Subsystem' */
-  ZCE_TriggeredSubsystem_process_T TriggeredSubsystem;/* '<S6>/Triggered Subsystem' */
+  ZCSigState crc_Trig_ZCE;             /* '<S11>/crc' */
+  ZCE_TriggeredSubsystem_process_T TriggeredSubsystem_n;/* '<S9>/Triggered Subsystem' */
+  ZCE_TriggeredSubsystem_process_T TriggeredSubsystem_d;/* '<S8>/Triggered Subsystem' */
+  ZCSigState TriggeredSubsystem_Trig_ZCE_m;/* '<S7>/Triggered Subsystem' */
 } PrevZCX_process_T;
 
 /* Backward compatible GRT Identifiers */
@@ -1061,45 +1009,48 @@ typedef struct {
 #define rtPrevZCSigState               process_PrevZCX
 #define PrevZCSigStates                PrevZCX_process_T
 
-/* Parameters for system: '<S6>/Triggered Subsystem' */
+/* Parameters for system: '<S8>/Triggered Subsystem' */
 struct P_TriggeredSubsystem_process_T_ {
   uint8_T tx_Y0;                       /* Computed Parameter: tx_Y0
-                                        * Referenced by: '<S12>/tx'
+                                        * Referenced by: '<S14>/tx'
                                         */
 };
 
 /* Parameters (default storage) */
 struct P_process_T_ {
+  real_T message_poll_num;             /* Variable: message_poll_num
+                                        * Referenced by: '<S12>/Constant'
+                                        */
   uint8_T kGrdCmdSize;                 /* Variable: kGrdCmdSize
                                         * Referenced by:
-                                        *   '<S10>/MATLAB Function'
-                                        *   '<S16>/Constant1'
-                                        *   '<S16>/Constant3'
+                                        *   '<S11>/MATLAB Function'
+                                        *   '<S19>/Constant1'
+                                        *   '<S19>/Constant3'
                                         */
   uint8_T kGrdCrcSize;                 /* Variable: kGrdCrcSize
                                         * Referenced by:
-                                        *   '<S10>/MATLAB Function'
-                                        *   '<S16>/Constant4'
+                                        *   '<S11>/MATLAB Function'
+                                        *   '<S19>/Constant4'
                                         */
   uint8_T kGrdFrameStart;              /* Variable: kGrdFrameStart
                                         * Referenced by:
-                                        *   '<S10>/MATLAB Function'
-                                        *   '<S16>/Constant'
+                                        *   '<S11>/MATLAB Function'
+                                        *   '<S19>/Constant'
                                         */
   uint8_T kGrdFrameStartSize;          /* Variable: kGrdFrameStartSize
                                         * Referenced by:
-                                        *   '<S10>/MATLAB Function'
-                                        *   '<S16>/Constant2'
+                                        *   '<S11>/MATLAB Function'
+                                        *   '<S19>/Constant2'
                                         */
   uint8_T kGrdMsgIdSize;               /* Variable: kGrdMsgIdSize
-                                        * Referenced by: '<S10>/MATLAB Function'
+                                        * Referenced by: '<S11>/MATLAB Function'
                                         */
   uint8_T kMaxPacketSize;              /* Variable: kMaxPacketSize
-                                        * Referenced by: '<S10>/MATLAB Function'
+                                        * Referenced by: '<S11>/MATLAB Function'
                                         */
   real_T PacketInput2_MaxMissedTicks;
                                   /* Mask Parameter: PacketInput2_MaxMissedTicks
-                                   * Referenced by: '<S9>/Packet Input2'
+                                   * Referenced by: '<S10>/Packet Input2'
                                    */
   real_T PacketOutput_MaxMissedTicks;
                                   /* Mask Parameter: PacketOutput_MaxMissedTicks
@@ -1111,7 +1062,7 @@ struct P_process_T_ {
                                   */
   real_T PacketInput2_YieldWhenWaiting;
                                 /* Mask Parameter: PacketInput2_YieldWhenWaiting
-                                 * Referenced by: '<S9>/Packet Input2'
+                                 * Referenced by: '<S10>/Packet Input2'
                                  */
   real_T PacketOutput_YieldWhenWaiting;
                                 /* Mask Parameter: PacketOutput_YieldWhenWaiting
@@ -1121,8 +1072,14 @@ struct P_process_T_ {
                                /* Mask Parameter: PacketOutput1_YieldWhenWaiting
                                 * Referenced by: '<S1>/Packet Output1'
                                 */
+  real_T holder_msgID_0x1_u_p;         /* Mask Parameter: holder_msgID_0x1_u_p
+                                        * Referenced by: '<S8>/Constant'
+                                        */
+  real_T holder_msgID_0x2_u_p;         /* Mask Parameter: holder_msgID_0x2_u_p
+                                        * Referenced by: '<S9>/Constant'
+                                        */
   int32_T PacketInput2_PacketID;       /* Mask Parameter: PacketInput2_PacketID
-                                        * Referenced by: '<S9>/Packet Input2'
+                                        * Referenced by: '<S10>/Packet Input2'
                                         */
   int32_T PacketOutput_PacketID;       /* Mask Parameter: PacketOutput_PacketID
                                         * Referenced by: '<S1>/Packet Output'
@@ -1130,32 +1087,12 @@ struct P_process_T_ {
   int32_T PacketOutput1_PacketID;      /* Mask Parameter: PacketOutput1_PacketID
                                         * Referenced by: '<S1>/Packet Output1'
                                         */
-  real_T Constant_Value;               /* Expression: hex2dec('0x00')
-                                        * Referenced by: '<S7>/Constant'
-                                        */
-  real_T Constant_Value_m;             /* Expression: hex2dec('0x01')
-                                        * Referenced by: '<S8>/Constant'
-                                        */
-  real_T Constant_Value_j;             /* Expression: 1
+  struct_QSg1mMqvkNcdAR48PoLPrG serial_rx_bus_Outport_2_Y0;
+                               /* Computed Parameter: serial_rx_bus_Outport_2_Y0
+                                * Referenced by: synthesized block
+                                */
+  real_T Constant_Value;               /* Expression: 1
                                         * Referenced by: '<S5>/Constant'
-                                        */
-  real_T ExecutionTime_P1;             /* Expression: ShowTaskTimes
-                                        * Referenced by: '<Root>/Execution Time'
-                                        */
-  real_T UnitDelay2_InitialCondition;  /* Expression: 0
-                                        * Referenced by: '<S2>/Unit Delay2'
-                                        */
-  real_T Accumulator_gainval;         /* Computed Parameter: Accumulator_gainval
-                                       * Referenced by: '<S2>/Accumulator'
-                                       */
-  real_T Accumulator_IC;               /* Expression: 1
-                                        * Referenced by: '<S2>/Accumulator'
-                                        */
-  real_T Bias_Bias;                    /* Expression: -1
-                                        * Referenced by: '<S2>/Bias'
-                                        */
-  real_T Constant18_Value;             /* Expression: 1
-                                        * Referenced by: '<S2>/Constant18'
                                         */
   real_T Constant_Value_i;             /* Expression: hex2dec('0xEF')
                                         * Referenced by: '<S1>/Constant'
@@ -1199,68 +1136,79 @@ struct P_process_T_ {
   real_T Constant9_Value;              /* Expression: hex2dec('0x01')
                                         * Referenced by: '<S1>/Constant9'
                                         */
-  uint16_T Accumulator_IC_g;           /* Computed Parameter: Accumulator_IC_g
+  real_T ExecutionTime_P1;             /* Expression: ShowTaskTimes
+                                        * Referenced by: '<S2>/Execution Time'
+                                        */
+  real_T UnitDelay2_InitialCondition;  /* Expression: 0
+                                        * Referenced by: '<S4>/Unit Delay2'
+                                        */
+  real_T Accumulator_gainval;         /* Computed Parameter: Accumulator_gainval
+                                       * Referenced by: '<S4>/Accumulator'
+                                       */
+  real_T Accumulator_IC;               /* Expression: 1
+                                        * Referenced by: '<S4>/Accumulator'
+                                        */
+  real_T Bias_Bias;                    /* Expression: -1
+                                        * Referenced by: '<S4>/Bias'
+                                        */
+  real_T Constant18_Value;             /* Expression: 1
+                                        * Referenced by: '<S4>/Constant18'
+                                        */
+  uint16_T Accumulator_IC_j;           /* Computed Parameter: Accumulator_IC_j
                                         * Referenced by: '<S7>/Accumulator'
                                         */
-  uint16_T Accumulator_IC_a;           /* Computed Parameter: Accumulator_IC_a
-                                        * Referenced by: '<S8>/Accumulator'
-                                        */
   boolean_T UnitDelay5_InitialCondition;/* Expression: false
-                                         * Referenced by: '<S10>/Unit Delay5'
+                                         * Referenced by: '<S11>/Unit Delay5'
                                          */
   boolean_T Constant16_Value;          /* Expression: true
-                                        * Referenced by: '<S6>/Constant16'
+                                        * Referenced by: '<S7>/Constant16'
+                                        */
+  boolean_T Constant_Value_n;          /* Expression: false
+                                        * Referenced by: '<S2>/Constant'
                                         */
   boolean_T Constant18_Value_a;        /* Expression: true
                                         * Referenced by: '<S3>/Constant18'
                                         */
-  uint8_T sum_eight_bit_Y0;            /* Computed Parameter: sum_eight_bit_Y0
-                                        * Referenced by: '<S16>/sum_eight_bit'
+  uint8_T tx_Y0;                       /* Computed Parameter: tx_Y0
+                                        * Referenced by: '<S13>/tx'
                                         */
-  uint8_T iterator_Y0;                 /* Computed Parameter: iterator_Y0
-                                        * Referenced by: '<S5>/iterator'
+  uint8_T sum_eight_bit_Y0;            /* Computed Parameter: sum_eight_bit_Y0
+                                        * Referenced by: '<S19>/sum_eight_bit'
                                         */
   uint8_T y_Y0;                        /* Computed Parameter: y_Y0
                                         * Referenced by: '<S5>/y'
                                         */
   uint8_T UnitDelay_InitialCondition;  /* Expression: uint8(1)
-                                        * Referenced by: '<S10>/Unit Delay'
+                                        * Referenced by: '<S11>/Unit Delay'
                                         */
   uint8_T UnitDelay1_InitialCondition;
                               /* Computed Parameter: UnitDelay1_InitialCondition
-                               * Referenced by: '<S10>/Unit Delay1'
+                               * Referenced by: '<S11>/Unit Delay1'
                                */
   uint8_T UnitDelay2_InitialCondition_m;
                             /* Computed Parameter: UnitDelay2_InitialCondition_m
-                             * Referenced by: '<S10>/Unit Delay2'
+                             * Referenced by: '<S11>/Unit Delay2'
                              */
   uint8_T UnitDelay3_InitialCondition;
                               /* Computed Parameter: UnitDelay3_InitialCondition
-                               * Referenced by: '<S10>/Unit Delay3'
+                               * Referenced by: '<S11>/Unit Delay3'
                                */
   uint8_T UnitDelay4_InitialCondition;
                               /* Computed Parameter: UnitDelay4_InitialCondition
-                               * Referenced by: '<S10>/Unit Delay4'
+                               * Referenced by: '<S11>/Unit Delay4'
                                */
   uint8_T UnitDelay6_InitialCondition; /* Expression: uint8(0)
-                                        * Referenced by: '<S10>/Unit Delay6'
-                                        */
-  uint8_T Accumulator_IC_j;            /* Computed Parameter: Accumulator_IC_j
-                                        * Referenced by: '<S6>/Accumulator'
-                                        */
-  uint8_T Constant_Value_b;            /* Expression: uint8(144)
-                                        * Referenced by: '<S11>/Constant'
+                                        * Referenced by: '<S11>/Unit Delay6'
                                         */
   uint8_T Accumulator_IC_c;            /* Computed Parameter: Accumulator_IC_c
-                                        * Referenced by: '<S11>/Accumulator'
+                                        * Referenced by: '<S12>/Accumulator'
                                         */
   uint8_T ResettableDelay_InitialCondition;
                          /* Computed Parameter: ResettableDelay_InitialCondition
-                          * Referenced by: '<S11>/Resettable Delay'
+                          * Referenced by: '<S12>/Resettable Delay'
                           */
-  P_TriggeredSubsystem_process_T TriggeredSubsystem_h;/* '<S8>/Triggered Subsystem' */
-  P_TriggeredSubsystem_process_T TriggeredSubsystem_i;/* '<S7>/Triggered Subsystem' */
-  P_TriggeredSubsystem_process_T TriggeredSubsystem;/* '<S6>/Triggered Subsystem' */
+  P_TriggeredSubsystem_process_T TriggeredSubsystem_n;/* '<S9>/Triggered Subsystem' */
+  P_TriggeredSubsystem_process_T TriggeredSubsystem_d;/* '<S8>/Triggered Subsystem' */
 };
 
 /* Real-time Model Data Structure */
@@ -1409,23 +1357,26 @@ extern RT_MODEL_process_T *const process_M;
  *
  * '<Root>' : 'process'
  * '<S1>'   : 'process/TX'
- * '<S2>'   : 'process/recursive_mean'
+ * '<S2>'   : 'process/performance'
  * '<S3>'   : 'process/serial_rx'
- * '<S4>'   : 'process/y_out'
+ * '<S4>'   : 'process/performance/recursive_mean1'
  * '<S5>'   : 'process/serial_rx/message_rx_looper'
- * '<S6>'   : 'process/serial_rx/message_rx_looper/holder'
- * '<S7>'   : 'process/serial_rx/message_rx_looper/holder_msgID_0x00'
- * '<S8>'   : 'process/serial_rx/message_rx_looper/holder_msgID_0x01'
- * '<S9>'   : 'process/serial_rx/message_rx_looper/packet_rx'
- * '<S10>'  : 'process/serial_rx/message_rx_looper/parser'
- * '<S11>'  : 'process/serial_rx/message_rx_looper/vectorized_available_flags'
- * '<S12>'  : 'process/serial_rx/message_rx_looper/holder/Triggered Subsystem'
- * '<S13>'  : 'process/serial_rx/message_rx_looper/holder_msgID_0x00/Triggered Subsystem'
- * '<S14>'  : 'process/serial_rx/message_rx_looper/holder_msgID_0x01/Triggered Subsystem'
- * '<S15>'  : 'process/serial_rx/message_rx_looper/parser/MATLAB Function'
- * '<S16>'  : 'process/serial_rx/message_rx_looper/parser/crc'
- * '<S17>'  : 'process/serial_rx/message_rx_looper/parser/crc/MATLAB Function1'
- * '<S18>'  : 'process/serial_rx/message_rx_looper/vectorized_available_flags/MATLAB Function'
- * '<S19>'  : 'process/serial_rx/message_rx_looper/vectorized_available_flags/y_out'
+ * '<S6>'   : 'process/serial_rx/y_out'
+ * '<S7>'   : 'process/serial_rx/message_rx_looper/holder'
+ * '<S8>'   : 'process/serial_rx/message_rx_looper/holder_msgID_0x1'
+ * '<S9>'   : 'process/serial_rx/message_rx_looper/holder_msgID_0x2'
+ * '<S10>'  : 'process/serial_rx/message_rx_looper/packet_rx'
+ * '<S11>'  : 'process/serial_rx/message_rx_looper/parser'
+ * '<S12>'  : 'process/serial_rx/message_rx_looper/vectorized_available_flags'
+ * '<S13>'  : 'process/serial_rx/message_rx_looper/holder/Triggered Subsystem'
+ * '<S14>'  : 'process/serial_rx/message_rx_looper/holder_msgID_0x1/Triggered Subsystem'
+ * '<S15>'  : 'process/serial_rx/message_rx_looper/holder_msgID_0x1/count_number_of_calls'
+ * '<S16>'  : 'process/serial_rx/message_rx_looper/holder_msgID_0x2/Triggered Subsystem'
+ * '<S17>'  : 'process/serial_rx/message_rx_looper/holder_msgID_0x2/count_number_of_calls'
+ * '<S18>'  : 'process/serial_rx/message_rx_looper/parser/MATLAB Function'
+ * '<S19>'  : 'process/serial_rx/message_rx_looper/parser/crc'
+ * '<S20>'  : 'process/serial_rx/message_rx_looper/parser/crc/MATLAB Function1'
+ * '<S21>'  : 'process/serial_rx/message_rx_looper/vectorized_available_flags/MATLAB Function'
+ * '<S22>'  : 'process/serial_rx/message_rx_looper/vectorized_available_flags/y_out'
  */
 #endif                                 /* RTW_HEADER_process_h_ */

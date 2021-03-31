@@ -3,9 +3,9 @@
  *
  * Code generation for model "process".
  *
- * Model version              : 2.406
+ * Model version              : 2.467
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Tue Mar 30 21:41:59 2021
+ * C source code generated on : Tue Mar 30 22:32:46 2021
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -32,7 +32,9 @@ static uint_T rtDataTypeSizes[] = {
   sizeof(void*),
   sizeof(action_T),
   2*sizeof(uint32_T),
-  sizeof(uint8_T)
+  sizeof(uint8_T),
+  sizeof(struct_qTPYqaCUNjh5BSzMwShH5B),
+  sizeof(struct_QSg1mMqvkNcdAR48PoLPrG)
 };
 
 /* data type name table */
@@ -51,7 +53,9 @@ static const char_T * rtDataTypeNames[] = {
   "pointer_T",
   "action_T",
   "timer_uint32_pair_T",
-  "uint8_T"
+  "uint8_T",
+  "struct_qTPYqaCUNjh5BSzMwShH5B",
+  "struct_QSg1mMqvkNcdAR48PoLPrG"
 };
 
 /* data type transitions for block I/O structure */
@@ -60,73 +64,70 @@ static DataTypeTransition rtBTransitions[] = {
 
   { (char_T *)(&process_B.missed_ticks), 6, 0, 1 },
 
-  { (char_T *)(&process_B.Accumulator_c), 5, 0, 2 },
+  { (char_T *)(&process_B.Accumulator_i), 5, 0, 1 },
 
-  { (char_T *)(&process_B.DataTypeConversion), 3, 0, 167 },
+  { (char_T *)(&process_B.DataTypeConversion), 3, 0, 173 },
 
   { (char_T *)(&process_B.available), 8, 0, 3 },
 
-  { (char_T *)(&process_B.TriggeredSubsystem_h.rx[0]), 3, 0, 4 },
+  { (char_T *)(&process_B.TriggeredSubsystem_n.rx[0]), 3, 0, 4 },
 
-  { (char_T *)(&process_B.TriggeredSubsystem_i.rx[0]), 3, 0, 4 },
-
-  { (char_T *)(&process_B.TriggeredSubsystem.rx[0]), 3, 0, 4 }
+  { (char_T *)(&process_B.TriggeredSubsystem_d.rx[0]), 3, 0, 4 }
   ,
 
   { (char_T *)(&process_DW.UnitDelay2_DSTATE), 0, 0, 2 },
 
-  { (char_T *)(&process_DW.Scope26_PWORK.LoggedData), 11, 0, 34 },
+  { (char_T *)(&process_DW.PacketOutput_PWORK[0]), 11, 0, 23 },
 
-  { (char_T *)(&process_DW.Accumulator_DSTATE_j), 5, 0, 2 },
+  { (char_T *)(&process_DW.Accumulator_DSTATE_h), 5, 0, 1 },
 
-  { (char_T *)(&process_DW.UnitDelay_DSTATE), 3, 0, 155 },
+  { (char_T *)(&process_DW.UnitDelay_DSTATE), 3, 0, 154 },
 
   { (char_T *)(&process_DW.UnitDelay5_DSTATE), 8, 0, 1 },
 
-  { (char_T *)(&process_DW.message_rx_looper_SubsysRanBC), 2, 0, 3 },
+  { (char_T *)(&process_DW.Accumulator_PrevResetState), 2, 0, 5 },
 
-  { (char_T *)(&process_DW.TriggeredSubsystem_h.TriggeredSubsystem_SubsysRanBC),
+  { (char_T *)(&process_DW.TriggeredSubsystem_n.TriggeredSubsystem_SubsysRanBC),
     2, 0, 1 },
 
-  { (char_T *)(&process_DW.TriggeredSubsystem_i.TriggeredSubsystem_SubsysRanBC),
-    2, 0, 1 },
-
-  { (char_T *)(&process_DW.TriggeredSubsystem.TriggeredSubsystem_SubsysRanBC), 2,
-    0, 1 }
+  { (char_T *)(&process_DW.TriggeredSubsystem_d.TriggeredSubsystem_SubsysRanBC),
+    2, 0, 1 }
 };
 
 /* data type transition table for block I/O structure */
 static DataTypeTransitionTable rtBTransTable = {
-  17U,
+  15U,
   rtBTransitions
 };
 
 /* data type transitions for Parameters structure */
 static DataTypeTransition rtPTransitions[] = {
+  { (char_T *)(&process_P.message_poll_num), 0, 0, 1 },
+
   { (char_T *)(&process_P.kGrdCmdSize), 3, 0, 6 },
 
-  { (char_T *)(&process_P.PacketInput2_MaxMissedTicks), 0, 0, 6 },
+  { (char_T *)(&process_P.PacketInput2_MaxMissedTicks), 0, 0, 8 },
 
   { (char_T *)(&process_P.PacketInput2_PacketID), 6, 0, 3 },
 
-  { (char_T *)(&process_P.Constant_Value), 0, 0, 23 },
+  { (char_T *)(&process_P.serial_rx_bus_Outport_2_Y0), 16, 0, 1 },
 
-  { (char_T *)(&process_P.Accumulator_IC_g), 5, 0, 2 },
+  { (char_T *)(&process_P.Constant_Value), 0, 0, 21 },
 
-  { (char_T *)(&process_P.UnitDelay5_InitialCondition), 8, 0, 3 },
+  { (char_T *)(&process_P.Accumulator_IC_j), 5, 0, 1 },
 
-  { (char_T *)(&process_P.sum_eight_bit_Y0), 3, 0, 13 },
+  { (char_T *)(&process_P.UnitDelay5_InitialCondition), 8, 0, 4 },
 
-  { (char_T *)(&process_P.TriggeredSubsystem_h.tx_Y0), 3, 0, 1 },
+  { (char_T *)(&process_P.tx_Y0), 3, 0, 11 },
 
-  { (char_T *)(&process_P.TriggeredSubsystem_i.tx_Y0), 3, 0, 1 },
+  { (char_T *)(&process_P.TriggeredSubsystem_n.tx_Y0), 3, 0, 1 },
 
-  { (char_T *)(&process_P.TriggeredSubsystem.tx_Y0), 3, 0, 1 }
+  { (char_T *)(&process_P.TriggeredSubsystem_d.tx_Y0), 3, 0, 1 }
 };
 
 /* data type transition table for Parameters structure */
 static DataTypeTransitionTable rtPTransTable = {
-  10U,
+  11U,
   rtPTransitions
 };
 
